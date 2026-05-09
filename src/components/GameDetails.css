@@ -14,7 +14,7 @@
 }
 
 .game-details-container {
-  background-color: white;
+  background-color: var(--color-surface);
   border-radius: 10px;
   width: 100%;
   max-width: 1200px;
@@ -31,15 +31,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
-  background-color: white;
+  background-color: var(--color-surface);
   z-index: 5;
 }
 
 .game-details-header h2 {
-  color: #013369;
+  color: var(--color-nfl);
   margin: 0;
 }
 
@@ -48,7 +48,7 @@
   border: none;
   font-size: 2rem;
   line-height: 1;
-  color: #666;
+  color: var(--color-text-secondary);
   cursor: pointer;
 }
 
@@ -59,19 +59,19 @@
 .game-info {
   padding: 1.5rem;
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
   background-color: #f9f9fa;
 }
 
 .game-date {
-  color: #666;
+  color: var(--color-text-secondary);
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
 
 .game-status {
   font-weight: bold;
-  color: #013369;
+  color: var(--color-nfl);
   margin-left: 0.5rem;
 }
 
@@ -92,18 +92,18 @@
   font-weight: 500;
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: var(--color-text);
 }
 
 .team-score {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #013369;
+  color: var(--color-nfl);
 }
 
 .score-divider {
   font-size: 2rem;
-  color: #999;
+  color: var(--color-text-muted);
 }
 
 .box-score-container {
@@ -115,7 +115,7 @@
 }
 
 .team-box-score h3 {
-  color: #013369;
+  color: var(--color-nfl);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #eee;
@@ -135,13 +135,13 @@
 .box-score-table td {
   padding: 0.75rem 0.5rem;
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .box-score-table th {
   font-weight: 500;
-  color: #666;
-  background-color: #f8f9fa;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface-elevated);
   position: sticky;
   top: 0;
 }
@@ -154,7 +154,7 @@
 
 .no-data {
   text-align: center;
-  color: #999;
+  color: var(--color-text-muted);
   padding: 2rem 0;
 }
 
@@ -169,7 +169,7 @@
 .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  border-top: 4px solid #013369;
+  border-top: 4px solid var(--color-nfl);
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
@@ -179,7 +179,7 @@
 .error-message {
   padding: 2rem;
   text-align: center;
-  color: #e74c3c;
+  color: var(--color-negative);
 }
 
 @keyframes spin {

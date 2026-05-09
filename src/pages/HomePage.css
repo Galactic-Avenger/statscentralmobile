@@ -1,152 +1,219 @@
+/* ==========================================================================
+   HomePage.css
+   Hero with imagery, sport tiles with backgrounds, feature card grid.
+   ========================================================================== */
+
 .home-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.home-hero {
+  position: relative;
+  height: 380px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-surface);
+  overflow: hidden;
+  margin-bottom: var(--space-6);
+  /* Bleed full-width on mobile inside the .content padding */
+  margin-left: calc(var(--space-4) * -1);
+  margin-right: calc(var(--space-4) * -1);
+}
+
+.home-hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* Multi-stop gradient: bottom is dark for legibility, top tinted for mood */
+  background: linear-gradient(
+    180deg,
+    rgba(10, 14, 22, 0.55) 0%,
+    rgba(10, 14, 22, 0.4) 40%,
+    rgba(10, 14, 22, 0.95) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-6) var(--space-5) var(--space-8);
+}
+
+.home-hero-eyebrow {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+
+.home-hero-title {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+.home-hero-sub {
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  max-width: 90%;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+
+.home-section,
+.features-section {
+  padding: 0 var(--space-1);
+  margin-bottom: var(--space-8);
+}
+
+.section-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   Sport tiles
+   ========================================================================== */
+
+.sports-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.sport-button {
+  position: relative;
+  height: 130px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-surface);
+  display: flex;
+  align-items: flex-end;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.sport-button:hover { transform: translateY(-2px); }
+.sport-button:active { transform: scale(0.98); }
+
+.button-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-4);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.55) 55%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+.sport-button h2 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: var(--space-1);
+  color: white;
+}
+
+.sport-button p {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}
+
+/* Per-sport accent bar (left edge) */
+.sport-button.nba { box-shadow: inset 4px 0 0 var(--color-nba); }
+.sport-button.nfl { box-shadow: inset 4px 0 0 var(--color-nfl); }
+.sport-button.mlb { box-shadow: inset 4px 0 0 var(--color-mlb); }
+.sport-button.epl { box-shadow: inset 4px 0 0 var(--color-epl); }
+
+/* ==========================================================================
+   Feature cards
+   ========================================================================== */
+
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.feature {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-out);
+}
+
+.feature:hover {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-elevated);
+}
+
+.feature-icon {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-bottom: var(--space-2);
+  line-height: 1;
+}
+
+.feature h3 {
+  margin-bottom: var(--space-1);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.feature p {
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Larger screens
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .home-hero {
+    height: 460px;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: var(--radius-xl);
   }
-  
-  .home-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .home-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    color: #333;
-    text-align: center;
-  }
-  
-  .intro-text {
-    font-size: 1.2rem;
-    text-align: center;
-    max-width: 800px;
-    margin-bottom: 3rem;
-    line-height: 1.6;
-    color: #555;
-  }
-  
-  .sports-buttons {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 900px;
-    margin-bottom: 3rem;
-  }
-  
-  .sport-button {
-    position: relative;
-    height: 200px;
-    border-radius: 10px;
-    overflow: hidden;
-    text-decoration: none;
-    color: white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .sport-button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  }
-  
-  .button-content {
-    background: rgba(0, 0, 0, 0.6);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    transition: background 0.3s ease;
-  }
-  
-  .sport-button:hover .button-content {
-    background: rgba(0, 0, 0, 0.4);
-  }
-  
-  .sport-button h2 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .sport-button p {
-    font-size: 1.2rem;
-  }
-  
-  /* Sport-specific backgrounds */
-  .nba {
-    background-image: url('/src/assets/nba-bg.jpg');
-    background-color: #17408B; /* NBA blue as fallback */
-  }
-  
-  .nfl {
-    background-image: url('/src/assets/nfl-bg.jpg');
-    background-color: #013369; /* NFL blue as fallback */
-  }
-  
-  .mlb {
-    background-image: url('/src/assets/mlb-bg.jpg');
-    background-color: #002D72; /* MLB blue as fallback */
-  }
-  
-  .epl {
-    background-image: url('/src/assets/epl-bg.jpg');
-    background-color: #3D185C; /* EPL purple as fallback */
-  }
-  
-  .features-section {
-    width: 100%;
-    max-width: 900px;
-  }
-  
-  .features-section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  .feature {
-    background-color: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .feature h3 {
-    margin-bottom: 0.5rem;
-    color: #333;
-  }
-  
-  .feature p {
-    color: #666;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .sports-buttons {
-      grid-template-columns: 1fr;
-    }
-    
-    .home-content h1 {
-      font-size: 2.2rem;
-    }
-    
-    .sport-button {
-      height: 150px;
-    }
-  }
+  .home-hero-title { font-size: var(--text-5xl); }
+  .sport-button { height: 180px; }
+  .sport-button h2 { font-size: var(--text-3xl); }
+  .features-grid { grid-template-columns: repeat(4, 1fr); }
+  .feature { padding: var(--space-5); }
+  .feature h3 { font-size: var(--text-lg); }
+  .feature p { font-size: var(--text-sm); }
+}

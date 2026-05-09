@@ -4,27 +4,27 @@
   padding: 2rem;
 }
 
-.nfl-header {
+.nfl-container .nfl-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.nfl-header h1 {
+.nfl-container .nfl-header h1 {
   font-size: 2.5rem;
-  color: #013369; /* NFL blue */
+  color: var(--color-nfl); /* NFL blue */
   margin-bottom: 0.5rem;
 }
 
-.nfl-header p {
-  color: #666;
+.nfl-container .nfl-header p {
+  color: var(--color-text-secondary);
   font-size: 1.1rem;
 }
 
-.search-container {
+.nfl-container .search-container {
   margin-bottom: 2rem;
 }
 
-.search-input {
+.nfl-container .search-input {
   width: 100%;
   padding: 12px 20px;
   border: 2px solid #ddd;
@@ -34,50 +34,50 @@
   transition: border-color 0.3s;
 }
 
-.search-input:focus {
-  border-color: #013369;
+.nfl-container .search-input:focus {
+  border-color: var(--color-nfl);
 }
 
-.tabs {
+.nfl-container .tabs {
   display: flex;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-border);
   margin-bottom: 2rem;
   overflow-x: auto;
 }
 
-.tab-button {
+.nfl-container .tab-button {
   background: none;
   border: none;
   padding: 1rem 1.5rem;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  color: #666;
+  color: var(--color-text-secondary);
   transition: all 0.3s ease;
   white-space: nowrap;
 }
 
-.tab-button:hover {
-  color: #013369;
+.nfl-container .tab-button:hover {
+  color: var(--color-nfl);
 }
 
-.tab-button.active {
-  color: #013369;
-  border-bottom: 3px solid #013369;
+.nfl-container .tab-button.active {
+  color: var(--color-nfl);
+  border-bottom: 3px solid var(--color-nfl);
 }
 
-.content-container {
+.nfl-container .content-container {
   min-height: 400px;
 }
 
-.players-grid, .teams-grid {
+.nfl-container .players-grid, .nfl-container .teams-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
-.player-card, .team-card {
-  background-color: #fff;
+.nfl-container .player-card, .nfl-container .team-card {
+  background-color: var(--color-surface);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
@@ -87,37 +87,37 @@
   height: 100%;
 }
 
-.player-card:hover, .team-card:hover {
+.nfl-container .player-card:hover, .nfl-container .team-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.player-card h3, .team-card h3 {
+.nfl-container .player-card h3, .nfl-container .team-card h3 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
-  color: #013369;
+  color: var(--color-nfl);
 }
 
-.player-info, .team-info {
+.nfl-container .player-info, .nfl-container .team-info {
   margin-bottom: 1rem;
   flex-grow: 1;
 }
 
-.player-info p, .team-info p {
+.nfl-container .player-info p, .nfl-container .team-info p {
   margin: 0.5rem 0;
-  color: #555;
+  color: var(--color-text-secondary);
   font-size: 0.95rem;
   line-height: 1.4;
 }
 
-.player-info span, .team-info span {
+.nfl-container .player-info span, .nfl-container .team-info span {
   font-weight: bold;
-  color: #333;
+  color: var(--color-text);
   margin-right: 0.3rem;
 }
 
-.view-stats-btn, .view-roster-btn {
-  background-color: #013369;
+.nfl-container .view-stats-btn, .nfl-container .view-roster-btn {
+  background-color: var(--color-nfl);
   color: white;
   border: none;
   border-radius: 4px;
@@ -133,39 +133,39 @@
   font-weight: 500;
 }
 
-.view-stats-btn:hover, .view-roster-btn:hover {
+.nfl-container .view-stats-btn:hover, .nfl-container .view-roster-btn:hover {
   background-color: #D50A0A; /* NFL red */
   transform: translateY(-2px);
 }
 
-.view-stats-btn:before {
+.nfl-container .view-stats-btn:before {
   content: "📊 ";
   margin-right: 5px;
 }
 
-.view-roster-btn:before {
+.nfl-container .view-roster-btn:before {
   content: "";
   margin-right: 0;
 }
 
-.placeholder-message {
+.nfl-container .placeholder-message {
   text-align: center;
   padding: 3rem;
-  background-color: #f9f9f9;
+  background-color: var(--color-surface-elevated);
   border-radius: 8px;
 }
 
-.placeholder-message h3 {
-  color: #013369;
+.nfl-container .placeholder-message h3 {
+  color: var(--color-nfl);
   margin-bottom: 1rem;
 }
 
-.placeholder-message p {
-  color: #666;
+.nfl-container .placeholder-message p {
+  color: var(--color-text-secondary);
   margin-bottom: 0.5rem;
 }
 
-.loading-spinner {
+.nfl-container .loading-spinner {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -173,39 +173,39 @@
   height: 300px;
 }
 
-.spinner {
+.nfl-container .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  border-top: 4px solid #013369;
+  border-top: 4px solid var(--color-nfl);
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
   margin-bottom: 1rem;
 }
 
-.no-results {
+.nfl-container .no-results {
   text-align: center;
   padding: 3rem;
   grid-column: 1 / -1;
-  background-color: #f9f9f9;
+  background-color: var(--color-surface-elevated);
   border-radius: 8px;
 }
 
-.no-results p {
+.nfl-container .no-results p {
   font-size: 1.2rem;
-  color: #666;
+  color: var(--color-text-secondary);
 }
 
-.error-message {
+.nfl-container .error-message {
   text-align: center;
   padding: 3rem;
-  background-color: #fff8f8;
+  background-color: var(--color-surface);
   border-radius: 8px;
-  color: #e74c3c;
+  color: var(--color-negative);
 }
 
-.error-message button {
-  background-color: #013369;
+.nfl-container .error-message button {
+  background-color: var(--color-nfl);
   color: white;
   border: none;
   border-radius: 4px;
@@ -215,21 +215,21 @@
 }
 
 /* Selected team and player styling */
-.selected-team-banner, .selected-player-stats {
-  background-color: #fff;
+.nfl-container .selected-team-banner, .nfl-container .selected-player-stats {
+  background-color: var(--color-surface);
   margin-bottom: 2rem;
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.selected-team-banner h2, .selected-player-stats h2 {
-  color: #013369;
+.nfl-container .selected-team-banner h2, .nfl-container .selected-player-stats h2 {
+  color: var(--color-nfl);
   margin-bottom: 1rem;
 }
 
-.back-button {
-  background-color: #013369;
+.nfl-container .back-button {
+  background-color: var(--color-nfl);
   color: white;
   border: none;
   border-radius: 4px;
@@ -239,98 +239,92 @@
   transition: background-color 0.3s;
 }
 
-.back-button:hover {
+.nfl-container .back-button:hover {
   background-color: #D50A0A;
 }
 
 /* Stats display */
-.stats-grid {
+.nfl-container .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1rem;
   margin: 1.5rem 0;
 }
 
-.stat-item {
-  background-color: #f8f9fa;
+.nfl-container .stat-item {
+  background-color: var(--color-surface-elevated);
   padding: 1rem;
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.stat-label {
+.nfl-container .stat-label {
   display: block;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-text-secondary);
   margin-bottom: 0.5rem;
 }
 
-.stat-value {
+.nfl-container .stat-value {
   display: block;
   font-size: 1.8rem;
   font-weight: bold;
-  color: #013369;
+  color: var(--color-nfl);
 }
 
-.advanced-stats {
+.nfl-container .advanced-stats {
   margin-top: 2rem;
 }
 
-.advanced-stats h3 {
+.nfl-container .advanced-stats h3 {
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--color-text);
 }
 
-.stats-table {
+.nfl-container .stats-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.stats-table th, .stats-table td {
+.nfl-container .stats-table th, .nfl-container .stats-table td {
   padding: 0.75rem;
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.stats-table th {
+.nfl-container .stats-table th {
   font-weight: 500;
-  color: #666;
-  background-color: #f8f9fa;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface-elevated);
 }
 
-.stats-table td {
+.nfl-container .stats-table td {
   font-weight: bold;
 }
 
 /* Games section - Updated for better alignment */
-.games-container, 
-.standings-container, 
-.injuries-container,
-.leaders-container {
+.nfl-container .games-container, .nfl-container .standings-container, .nfl-container .injuries-container, .nfl-container .leaders-container {
   width: 100%;
 }
 
-.games-container h3,
-.standings-container h3,
-.injuries-container h3,
-.leaders-container h3 {
-  color: #013369;
+.nfl-container .games-container h3, .nfl-container .standings-container h3, .nfl-container .injuries-container h3, .nfl-container .leaders-container h3 {
+  color: var(--color-nfl);
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
   text-align: center;
 }
 
 /* Game cards layout - updated to match NBA style */
-.games-list {
+.nfl-container .games-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
 }
 
-.game-card {
-  background-color: #fff;
+.nfl-container .game-card {
+  background-color: var(--color-surface);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
@@ -341,30 +335,30 @@
   min-height: 250px;
 }
 
-.game-card:hover {
+.nfl-container .game-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.game-header {
+.nfl-container .game-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
-  color: #666;
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
 }
 
-.game-status {
+.nfl-container .game-status {
   font-weight: bold;
-  color: #013369;
+  color: var(--color-nfl);
 }
 
-.game-time {
+.nfl-container .game-time {
   font-weight: bold;
-  color: #013369;
+  color: var(--color-nfl);
 }
 
-.game-teams {
+.nfl-container .game-teams {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -372,7 +366,7 @@
   margin: 1rem 0;
 }
 
-.team {
+.nfl-container .team {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -380,37 +374,37 @@
   width: 100%;
 }
 
-.team-name {
+.nfl-container .team-name {
   font-weight: 500;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
   text-align: center;
 }
 
-.team-score {
+.nfl-container .team-score {
   font-size: 2.2rem;
   font-weight: bold;
-  color: #013369;
+  color: var(--color-nfl);
 }
 
-.vs {
+.nfl-container .vs {
   margin: 0.5rem 0;
-  color: #999;
+  color: var(--color-text-muted);
   font-size: 0.9rem;
 }
 
-.game-venue {
+.nfl-container .game-venue {
   text-align: center;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-text-secondary);
   font-style: italic;
   margin-top: auto;
   padding-top: 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border);
 }
 
-.view-details-btn {
-  background-color: #013369;
+.nfl-container .view-details-btn {
+  background-color: var(--color-nfl);
   color: white;
   border: none;
   border-radius: 4px;
@@ -423,13 +417,13 @@
   transition: background-color 0.3s, transform 0.2s;
 }
 
-.view-details-btn:hover {
+.nfl-container .view-details-btn:hover {
   background-color: #D50A0A;
   transform: translateY(-2px);
 }
 
 /* Game Details Overlay and Modal */
-.game-details-overlay {
+.nfl-container .game-details-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -444,8 +438,8 @@
   overflow-y: auto;
 }
 
-.game-details-container {
-  background-color: white;
+.nfl-container .game-details-container {
+  background-color: var(--color-surface);
   border-radius: 10px;
   width: 100%;
   max-width: 1200px;
@@ -457,140 +451,139 @@
   flex-direction: column;
 }
 
-.game-details-header {
+.nfl-container .game-details-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
-  background-color: white;
+  background-color: var(--color-surface);
   z-index: 5;
 }
 
-.game-details-header h2 {
-  color: #013369;
+.nfl-container .game-details-header h2 {
+  color: var(--color-nfl);
   margin: 0;
 }
 
-.close-button {
+.nfl-container .close-button {
   background: transparent;
   border: none;
   font-size: 2rem;
   line-height: 1;
-  color: #666;
+  color: var(--color-text-secondary);
   cursor: pointer;
 }
 
-.close-button:hover {
+.nfl-container .close-button:hover {
   color: #D50A0A;
 }
 
-.game-info {
+.nfl-container .game-info {
   padding: 1.5rem;
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
   background-color: #f9f9fa;
 }
 
-.game-date {
-  color: #666;
+.nfl-container .game-date {
+  color: var(--color-text-secondary);
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
 
-.game-status {
+.nfl-container .game-status {
   font-weight: bold;
-  color: #013369;
+  color: var(--color-nfl);
   margin-left: 0.5rem;
 }
 
-.game-teams-score {
+.nfl-container .game-teams-score {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.game-teams-score .team {
+.nfl-container .game-teams-score .team {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 1.5rem;
 }
 
-.game-teams-score .team-name {
+.nfl-container .game-teams-score .team-name {
   font-weight: 500;
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: var(--color-text);
 }
 
-.game-teams-score .team-score {
+.nfl-container .game-teams-score .team-score {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #013369;
+  color: var(--color-nfl);
 }
 
-.score-divider {
+.nfl-container .score-divider {
   font-size: 2rem;
-  color: #999;
+  color: var(--color-text-muted);
 }
 
-.box-score-container {
+.nfl-container .box-score-container {
   padding: 1.5rem;
 }
 
-.team-box-score {
+.nfl-container .team-box-score {
   margin-bottom: 2rem;
 }
 
-.team-box-score h3 {
-  color: #013369;
+.nfl-container .team-box-score h3 {
+  color: var(--color-nfl);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #eee;
 }
 
-.box-score-table-wrapper {
+.nfl-container .box-score-table-wrapper {
   overflow-x: auto;
 }
 
-.box-score-table {
+.nfl-container .box-score-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9rem;
 }
 
-.box-score-table th, 
-.box-score-table td {
+.nfl-container .box-score-table th, .nfl-container .box-score-table td {
   padding: 0.75rem 0.5rem;
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.box-score-table th {
+.nfl-container .box-score-table th {
   font-weight: 500;
-  color: #666;
-  background-color: #f8f9fa;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface-elevated);
   position: sticky;
   top: 0;
 }
 
-.box-score-table td.player-name {
+.nfl-container .box-score-table td.player-name {
   text-align: left;
   font-weight: 500;
   white-space: nowrap;
 }
 
-.no-data {
+.nfl-container .no-data {
   text-align: center;
-  color: #999;
+  color: var(--color-text-muted);
   padding: 2rem 0;
 }
 
 /* Standings section */
-.standings-tables {
+.nfl-container .standings-tables {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -598,110 +591,109 @@
   max-width: 90%;
 }
 
-.conference-standings h4 {
-  color: #333;
+.nfl-container .conference-standings h4 {
+  color: var(--color-text);
   margin-bottom: 1rem;
   text-align: center;
   font-size: 1.3rem;
 }
 
-.division-standings {
+.nfl-container .division-standings {
   margin-bottom: 2rem;
 }
 
-.division-standings h5 {
-  color: #013369;
+.nfl-container .division-standings h5 {
+  color: var(--color-nfl);
   margin-bottom: 1rem;
   padding-left: 0.5rem;
   border-left: 3px solid #D50A0A;
   text-align: center;
 }
 
-.standings-table {
+.nfl-container .standings-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
+  background-color: var(--color-surface);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
 }
 
-.standings-table th,
-.standings-table td {
+.nfl-container .standings-table th, .nfl-container .standings-table td {
   padding: 0.8rem;
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.standings-table th {
-  background-color: #013369;
+.nfl-container .standings-table th {
+  background-color: var(--color-nfl);
   color: white;
   font-weight: 500;
 }
 
-.standings-table tr:hover {
-  background-color: #f8f9fa;
+.nfl-container .standings-table tr:hover {
+  background-color: var(--color-surface-elevated);
 }
 
 /* Added to improve table appearance */
-.standings-table td:first-child {
+.nfl-container .standings-table td:first-child {
   text-align: left; /* Team names left-aligned */
   padding-left: 1.2rem;
   font-weight: 500;
 }
 
 /* Injuries section */
-.injuries-list {
+.nfl-container .injuries-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
-.injury-card {
-  background-color: #fff;
+.nfl-container .injury-card {
+  background-color: var(--color-surface);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
 }
 
-.injury-card h4 {
-  color: #333;
+.nfl-container .injury-card h4 {
+  color: var(--color-text);
   margin-bottom: 0.8rem;
 }
 
-.injury-card p {
+.nfl-container .injury-card p {
   margin: 0.5rem 0;
-  color: #555;
+  color: var(--color-text-secondary);
 }
 
-.injury-card span {
+.nfl-container .injury-card span {
   font-weight: bold;
   margin-right: 0.5rem;
 }
 
-.injury-status {
-  color: #e74c3c;
+.nfl-container .injury-status {
+  color: var(--color-negative);
   font-weight: bold;
 }
 
 /* Leaders section */
-.leaders-section h4 {
-  color: #333;
+.nfl-container .leaders-section h4 {
+  color: var(--color-text);
   margin: 2rem 0 1rem;
   text-align: center;
 }
 
-.leaders-list {
+.nfl-container .leaders-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.leader-card {
+.nfl-container .leader-card {
   display: flex;
-  background-color: #fff;
+  background-color: var(--color-surface);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
@@ -710,141 +702,141 @@
   align-items: center;
 }
 
-.leader-rank {
+.nfl-container .leader-rank {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background-color: #013369;
+  background-color: var(--color-nfl);
   color: white;
   border-radius: 50%;
   font-weight: bold;
   margin-right: 1rem;
 }
 
-.leader-info {
+.nfl-container .leader-info {
   flex: 1;
 }
 
-.leader-info h4 {
-  color: #333;
+.nfl-container .leader-info h4 {
+  color: var(--color-text);
   margin-bottom: 0.5rem;
   text-align: left;
 }
 
-.leader-info p {
+.nfl-container .leader-info p {
   margin: 0.3rem 0;
-  color: #555;
+  color: var(--color-text-secondary);
 }
 
-.leader-card .view-stats-btn {
+.nfl-container .leader-card .view-stats-btn {
   margin-top: 1rem;
 }
 
 /* Season selector styling */
-.season-selector {
+.nfl-container .season-selector {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1.5rem auto;
-  background-color: #f8f9fa;
+  background-color: var(--color-surface-elevated);
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   max-width: 300px;
 }
 
-.season-selector label {
+.nfl-container .season-selector label {
   margin-right: 10px;
   font-weight: 500;
-  color: #555;
+  color: var(--color-text-secondary);
 }
 
-.season-select {
+.nfl-container .season-select {
   padding: 0.5rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
-  background-color: white;
-  color: #333;
+  background-color: var(--color-surface);
+  color: var(--color-text);
   font-size: 1rem;
   cursor: pointer;
   outline: none;
   transition: border-color 0.3s;
 }
 
-.season-select:focus {
-  border-color: #013369;
+.nfl-container .season-select:focus {
+  border-color: var(--color-nfl);
 }
 
-.season-title {
+.nfl-container .season-title {
   text-align: center;
   margin: 0 0 2rem 0;
-  color: #013369;
+  color: var(--color-nfl);
   font-size: 1.5rem;
   font-weight: bold;
 }
 
 /* Fixed layout for standings to prevent overlap */
-.standings-wrapper {
+.nfl-container .standings-wrapper {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.standings-title {
+.nfl-container .standings-title {
   text-align: center;
   margin-bottom: 1.5rem;
 }
 
-.standings-title h4 {
+.nfl-container .standings-title h4 {
   font-size: 1.5rem;
-  color: #013369;
+  color: var(--color-nfl);
   margin: 0;
 }
 
-.conference-container {
+.nfl-container .conference-container {
   margin-bottom: 2.5rem;
   width: 100%;
 }
 
-.conference-title {
+.nfl-container .conference-title {
   font-size: 1.3rem;
-  color: #013369;
+  color: var(--color-nfl);
   text-align: center;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #013369;
+  border-bottom: 2px solid var(--color-nfl);
 }
 
-.division-title {
+.nfl-container .division-title {
   font-size: 1.1rem;
-  color: #333;
+  color: var(--color-text);
   background-color: #f0f0f0;
   padding: 0.5rem 1rem;
   border-left: 4px solid #D50A0A;
   margin-bottom: 0.5rem;
 }
 
-.division-standings {
+.nfl-container .division-standings {
   margin-bottom: 2rem;
   width: 100%;
 }
 
-.division-table-wrapper {
+.nfl-container .division-table-wrapper {
   overflow-x: auto;
   width: 100%;
 }
 
-.standings-table {
+.nfl-container .standings-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1.5rem;
   min-width: 800px; /* Ensure minimum width for readability */
 }
 
-.standings-table th {
-  background-color: #013369;
+.nfl-container .standings-table th {
+  background-color: var(--color-nfl);
   color: white;
   padding: 0.7rem 0.5rem;
   text-align: center;
@@ -852,17 +844,17 @@
   white-space: nowrap;
 }
 
-.standings-table td {
+.nfl-container .standings-table td {
   padding: 0.7rem 0.5rem;
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.standings-table tr:hover {
-  background-color: #f8f9fa;
+.nfl-container .standings-table tr:hover {
+  background-color: var(--color-surface-elevated);
 }
 
-.standings-table td:first-child {
+.nfl-container .standings-table td:first-child {
   text-align: left;
   padding-left: 1rem;
   font-weight: 500;
@@ -870,13 +862,13 @@
 }
 
 /* Style for the season header in leaders */
-.leaders-section h4 {
+.nfl-container .leaders-section h4 {
   position: relative;
   margin-top: 2.5rem;
 }
 
 /* Make sure all game cards have the same layout even when no scores present */
-.game-card:not(:has(.team-score)) .game-teams {
+.nfl-container .game-card:not(:has(.team-score)) .game-teams {
   min-height: 100px;
 }
 
@@ -888,34 +880,74 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .nfl-header h1 {
+.nfl-container .nfl-header h1 {
     font-size: 2rem;
   }
   
-  .tab-button {
+.nfl-container .tab-button {
     padding: 0.8rem 1.2rem;
     font-size: 0.9rem;
   }
 
-  .games-list {
+.nfl-container .games-list {
     grid-template-columns: 1fr;
   }
   
-  .game-card {
+.nfl-container .game-card {
     min-height: 220px;
   }
   
-  .season-selector {
+.nfl-container .season-selector {
     flex-direction: column;
     padding: 0.8rem 1rem;
   }
   
-  .season-selector label {
+.nfl-container .season-selector label {
     margin-right: 0;
     margin-bottom: 0.5rem;
   }
   
-  .standings-table {
+.nfl-container .standings-table {
     min-width: 600px; /* Slightly smaller for mobile, but still requires horizontal scroll */
   }
+}
+
+/* ==========================================================================
+   Phase 2 hardening — explicit overrides for NFL accent
+   ========================================================================== */
+
+.nfl-container .tab-button.active,
+.nfl-container .tab-button:hover,
+.nfl-container .placeholder-message h3,
+.nfl-container .nfl-header h1,
+.nfl-container .search-input:focus,
+.nfl-container .player-card h3,
+.nfl-container .team-card h3,
+.nfl-container .selected-team-banner h2,
+.nfl-container .selected-player-stats h2,
+.nfl-container .games-container h3,
+.nfl-container .standings-container h3,
+.nfl-container .injuries-container h3,
+.nfl-container .leaders-container h3,
+.nfl-container .active-players-container h3 {
+  color: var(--color-nfl) !important;
+  border-color: var(--color-nfl) !important;
+}
+
+.nfl-container .tab-button.active {
+  border-bottom-color: var(--color-nfl) !important;
+}
+
+.nfl-container .back-button {
+  background-color: var(--color-nfl) !important;
+  color: white !important;
+}
+
+.nfl-container .back-button:hover {
+  background-color: var(--color-nfl-hover, var(--color-nfl)) !important;
+  filter: brightness(1.1);
+}
+
+.nfl-container .team-score {
+  color: var(--color-text) !important;
 }

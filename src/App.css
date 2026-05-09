@@ -1,106 +1,191 @@
-/* App.css - Main application styles */
+/* ==========================================================================
+   App.css — App shell layout
+   Uses design tokens from index.css. No hardcoded colors here.
+   ========================================================================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
-  }
-  
-  body {
-    background-color: #f7f8fc;
-    color: #333;
-    line-height: 1.6;
-  }
-  
-  .app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--color-bg);
+  /* Reserve space for the bottom nav (added in next round) so content
+     doesn't get hidden behind it. We add the safe-area inset for iPhone
+     home indicator. */
+  padding-bottom: calc(var(--bottom-nav-height) + var(--safe-area-bottom));
+}
+
+/* ==========================================================================
+   Top bar — slim brand header (no nav; primary nav is in BottomNav)
+   ========================================================================== */
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  height: var(--top-nav-height);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-4);
+  /* Frosted glass effect like the bottom nav for visual symmetry */
+  background: rgba(10, 14, 22, 0.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.top-bar-brand {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-base);
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+
+/* On larger screens, cap the content width and center it */
+@media (min-width: 768px) {
   .content {
-    flex: 1;
+    max-width: 1100px;
+    padding: var(--space-6);
   }
-  
-  button {
-    cursor: pointer;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1.2;
-  }
-  
-  p {
-    margin-bottom: 1rem;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  
-  /* Utility classes */
-  .mb-1 { margin-bottom: 0.5rem; }
-  .mb-2 { margin-bottom: 1rem; }
-  .mb-3 { margin-bottom: 1.5rem; }
-  .mb-4 { margin-bottom: 2rem; }
-  .mb-5 { margin-bottom: 3rem; }
-  
-  .mt-1 { margin-top: 0.5rem; }
-  .mt-2 { margin-top: 1rem; }
-  .mt-3 { margin-top: 1.5rem; }
-  .mt-4 { margin-top: 2rem; }
-  .mt-5 { margin-top: 3rem; }
-  
-  .p-1 { padding: 0.5rem; }
-  .p-2 { padding: 1rem; }
-  .p-3 { padding: 1.5rem; }
-  .p-4 { padding: 2rem; }
-  .p-5 { padding: 3rem; }
-  
-  /* Button styles */
-  .btn {
-    display: inline-block;
-    padding: 0.6rem 1.2rem;
-    background-color: #4e8cff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: background-color 0.3s, transform 0.2s;
-    text-decoration: none;
-  }
-  
-  .btn:hover {
-    background-color: #3a7aed;
-    transform: translateY(-2px);
-  }
-  
-  .btn-secondary {
-    background-color: #6c757d;
-  }
-  
-  .btn-secondary:hover {
-    background-color: #5a6268;
-  }
-  
-  /* Card styles */
-  .card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-  }
+}
+
+/* ==========================================================================
+   Shared utility classes (used by various pages)
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.text-center { text-align: center; }
+
+/* Spacing utilities (kept for backward compatibility with existing markup) */
+.mb-1 { margin-bottom: var(--space-2); }
+.mb-2 { margin-bottom: var(--space-4); }
+.mb-3 { margin-bottom: var(--space-6); }
+.mb-4 { margin-bottom: var(--space-8); }
+.mb-5 { margin-bottom: var(--space-12); }
+
+.mt-1 { margin-top: var(--space-2); }
+.mt-2 { margin-top: var(--space-4); }
+.mt-3 { margin-top: var(--space-6); }
+.mt-4 { margin-top: var(--space-8); }
+.mt-5 { margin-top: var(--space-12); }
+
+.p-1 { padding: var(--space-2); }
+.p-2 { padding: var(--space-4); }
+.p-3 { padding: var(--space-6); }
+.p-4 { padding: var(--space-8); }
+.p-5 { padding: var(--space-12); }
+
+/* ==========================================================================
+   Button variants (used across pages)
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  transition: all var(--duration-fast) var(--ease-out);
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn:active { transform: translateY(0) scale(0.98); }
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-border-strong);
+}
+
+/* ==========================================================================
+   Card pattern (legacy class — used by existing markup)
+   ========================================================================== */
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.card:hover {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-elevated);
+}
+
+/* ==========================================================================
+   Loading spinner — restyled for dark theme
+   ========================================================================== */
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12) var(--space-4);
+  gap: var(--space-4);
+  color: var(--color-text-secondary);
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Error message
+   ========================================================================== */
+
+.error-message {
+  background: var(--color-surface);
+  border: 1px solid var(--color-negative);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  text-align: center;
+  color: var(--color-text);
+}
+
+.error-message p {
+  margin-bottom: var(--space-4);
+  color: var(--color-negative);
+}

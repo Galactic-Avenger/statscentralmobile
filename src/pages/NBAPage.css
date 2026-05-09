@@ -1,180 +1,171 @@
-.games-container, 
-.standings-container, 
-.active-players-container,
-.injuries-container,
-.leaders-container {
+.nba-container .games-container, .nba-container .standings-container, .nba-container .active-players-container, .nba-container .injuries-container, .nba-container .leaders-container {
   width: 100%;
 }
 
-.games-container h3,
-.standings-container h3,
-.active-players-container h3,
-.injuries-container h3,
-.leaders-container h3 {
-  color: #17408B;
+.nba-container .games-container h3, .nba-container .standings-container h3, .nba-container .active-players-container h3, .nba-container .injuries-container h3, .nba-container .leaders-container h3 {
+  color: var(--color-nba);
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
   text-align: center;
 }
 
 /* Games Section */
-.games-list {
+.nba-container .games-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
-.game-card {
-  background-color: #fff;
+.nba-container .game-card {
+  background-color: var(--color-surface);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.game-card:hover {
+.nba-container .game-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.game-header {
+.nba-container .game-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
-  color: #666;
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
 }
 
-.game-status {
+.nba-container .game-status {
   font-weight: bold;
-  color: #17408B;
+  color: var(--color-nba);
 }
 
-.game-teams {
+.nba-container .game-teams {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
-.team {
+.nba-container .team {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.team-name {
+.nba-container .team-name {
   font-weight: 500;
 }
 
-.team-score {
+.nba-container .team-score {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-.vs {
+.nba-container .vs {
   text-align: center;
-  color: #999;
+  color: var(--color-text-muted);
   font-size: 0.8rem;
   margin: 0.5rem 0;
 }
 
 /* Standings Section */
-.standings-tables {
+.nba-container .standings-tables {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
 }
 
-.conference-standings h4 {
-  color: #333;
+.nba-container .conference-standings h4 {
+  color: var(--color-text);
   margin-bottom: 1rem;
   text-align: center;
 }
 
-.standings-table {
+.nba-container .standings-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
+  background-color: var(--color-surface);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.standings-table th,
-.standings-table td {
+.nba-container .standings-table th, .nba-container .standings-table td {
   padding: 0.8rem;
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.standings-table th {
-  background-color: #17408B;
+.nba-container .standings-table th {
+  background-color: var(--color-nba);
   color: white;
   font-weight: 500;
 }
 
-.standings-table tr:hover {
-  background-color: #f8f9fa;
+.nba-container .standings-table tr:hover {
+  background-color: var(--color-surface-elevated);
 }
 
 /* Active Players Section */
-.active-players-grid {
+.nba-container .active-players-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
 /* Injuries Section */
-.injuries-list {
+.nba-container .injuries-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
-.injury-card {
-  background-color: #fff;
+.nba-container .injury-card {
+  background-color: var(--color-surface);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
 }
 
-.injury-card h4 {
-  color: #333;
+.nba-container .injury-card h4 {
+  color: var(--color-text);
   margin-bottom: 0.8rem;
 }
 
-.injury-card p {
+.nba-container .injury-card p {
   margin: 0.5rem 0;
-  color: #555;
+  color: var(--color-text-secondary);
 }
 
-.injury-card span {
+.nba-container .injury-card span {
   font-weight: bold;
   margin-right: 0.5rem;
 }
 
-.injury-status {
-  color: #e74c3c;
+.nba-container .injury-status {
+  color: var(--color-negative);
   font-weight: bold;
 }
 
 /* Leaders Section */
-.leaders-section h4 {
-  color: #333;
+.nba-container .leaders-section h4 {
+  color: var(--color-text);
   margin-bottom: 1.5rem;
   text-align: center;
 }
 
-.leaders-list {
+.nba-container .leaders-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
-.leader-card {
+.nba-container .leader-card {
   display: flex;
-  background-color: #fff;
+  background-color: var(--color-surface);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
@@ -182,59 +173,59 @@
   overflow: hidden;
 }
 
-.leader-rank {
+.nba-container .leader-rank {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background-color: #17408B;
+  background-color: var(--color-nba);
   color: white;
   border-radius: 50%;
   font-weight: bold;
   margin-right: 1rem;
 }
 
-.leader-info {
+.nba-container .leader-info {
   flex: 1;
 }
 
-.leader-info h4 {
-  color: #333;
+.nba-container .leader-info h4 {
+  color: var(--color-text);
   margin-bottom: 0.5rem;
   text-align: left;
 }
 
-.leader-info p {
+.nba-container .leader-info p {
   margin: 0.3rem 0;
-  color: #555;
+  color: var(--color-text-secondary);
 }
 
-.leader-card .view-stats-btn {
+.nba-container .leader-card .view-stats-btn {
   margin-top: 1rem;
 }.no-results {
   text-align: center;
   padding: 3rem;
   grid-column: 1 / -1;
-  background-color: #f9f9f9;
+  background-color: var(--color-surface-elevated);
   border-radius: 8px;
 }
 
-.no-results p {
+.nba-container .no-results p {
   font-size: 1.2rem;
-  color: #666;
+  color: var(--color-text-secondary);
 }
 
-.error-message {
+.nba-container .error-message {
   text-align: center;
   padding: 3rem;
-  background-color: #fff8f8;
+  background-color: var(--color-surface);
   border-radius: 8px;
-  color: #e74c3c;
+  color: var(--color-negative);
 }
 
-.error-message button {
-  background-color: #17408B;
+.nba-container .error-message button {
+  background-color: var(--color-nba);
   color: white;
   border: none;
   border-radius: 4px;
@@ -242,20 +233,20 @@
   margin-top: 1rem;
   cursor: pointer;
 }.selected-team-banner, .selected-player-stats {
-  background-color: #fff;
+  background-color: var(--color-surface);
   margin-bottom: 2rem;
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.selected-team-banner h2, .selected-player-stats h2 {
-  color: #17408B;
+.nba-container .selected-team-banner h2, .nba-container .selected-player-stats h2 {
+  color: var(--color-nba);
   margin-bottom: 1rem;
 }
 
-.back-button {
-  background-color: #17408B;
+.nba-container .back-button {
+  background-color: var(--color-nba);
   color: white;
   border: none;
   border-radius: 4px;
@@ -265,66 +256,66 @@
   transition: background-color 0.3s;
 }
 
-.back-button:hover {
+.nba-container .back-button:hover {
   background-color: #C9082A;
 }
 
-.stats-grid {
+.nba-container .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1rem;
   margin: 1.5rem 0;
 }
 
-.stat-item {
-  background-color: #f8f9fa;
+.nba-container .stat-item {
+  background-color: var(--color-surface-elevated);
   padding: 1rem;
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.stat-label {
+.nba-container .stat-label {
   display: block;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-text-secondary);
   margin-bottom: 0.5rem;
 }
 
-.stat-value {
+.nba-container .stat-value {
   display: block;
   font-size: 1.8rem;
   font-weight: bold;
-  color: #17408B;
+  color: var(--color-nba);
 }
 
-.advanced-stats {
+.nba-container .advanced-stats {
   margin-top: 2rem;
 }
 
-.advanced-stats h3 {
+.nba-container .advanced-stats h3 {
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--color-text);
 }
 
-.stats-table {
+.nba-container .stats-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.stats-table th, .stats-table td {
+.nba-container .stats-table th, .nba-container .stats-table td {
   padding: 0.75rem;
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.stats-table th {
+.nba-container .stats-table th {
   font-weight: 500;
-  color: #666;
-  background-color: #f8f9fa;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface-elevated);
 }
 
-.stats-table td {
+.nba-container .stats-table td {
   font-weight: bold;
 }.nba-container {
   max-width: 1200px;
@@ -332,27 +323,27 @@
   padding: 2rem;
 }
 
-.nba-header {
+.nba-container .nba-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.nba-header h1 {
+.nba-container .nba-header h1 {
   font-size: 2.5rem;
-  color: #17408B; /* NBA blue */
+  color: var(--color-nba); /* NBA blue */
   margin-bottom: 0.5rem;
 }
 
-.nba-header p {
-  color: #666;
+.nba-container .nba-header p {
+  color: var(--color-text-secondary);
   font-size: 1.1rem;
 }
 
-.search-container {
+.nba-container .search-container {
   margin-bottom: 2rem;
 }
 
-.search-input {
+.nba-container .search-input {
   width: 100%;
   padding: 12px 20px;
   border: 2px solid #ddd;
@@ -362,50 +353,50 @@
   transition: border-color 0.3s;
 }
 
-.search-input:focus {
-  border-color: #17408B;
+.nba-container .search-input:focus {
+  border-color: var(--color-nba);
 }
 
-.tabs {
+.nba-container .tabs {
   display: flex;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-border);
   margin-bottom: 2rem;
   overflow-x: auto;
 }
 
-.tab-button {
+.nba-container .tab-button {
   background: none;
   border: none;
   padding: 1rem 1.5rem;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  color: #666;
+  color: var(--color-text-secondary);
   transition: all 0.3s ease;
   white-space: nowrap;
 }
 
-.tab-button:hover {
-  color: #17408B;
+.nba-container .tab-button:hover {
+  color: var(--color-nba);
 }
 
-.tab-button.active {
-  color: #17408B;
-  border-bottom: 3px solid #17408B;
+.nba-container .tab-button.active {
+  color: var(--color-nba);
+  border-bottom: 3px solid var(--color-nba);
 }
 
-.content-container {
+.nba-container .content-container {
   min-height: 400px;
 }
 
-.players-grid, .teams-grid {
+.nba-container .players-grid, .nba-container .teams-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
-.player-card, .team-card {
-  background-color: #fff;
+.nba-container .player-card, .nba-container .team-card {
+  background-color: var(--color-surface);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
@@ -415,37 +406,37 @@
   height: 100%;
 }
 
-.player-card:hover, .team-card:hover {
+.nba-container .player-card:hover, .nba-container .team-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.player-card h3, .team-card h3 {
+.nba-container .player-card h3, .nba-container .team-card h3 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
-  color: #17408B;
+  color: var(--color-nba);
 }
 
-.player-info, .team-info {
+.nba-container .player-info, .nba-container .team-info {
   margin-bottom: 1rem;
   flex-grow: 1;
 }
 
-.player-info p, .team-info p {
+.nba-container .player-info p, .nba-container .team-info p {
   margin: 0.5rem 0;
-  color: #555;
+  color: var(--color-text-secondary);
   font-size: 0.95rem;
   line-height: 1.4;
 }
 
-.player-info span, .team-info span {
+.nba-container .player-info span, .nba-container .team-info span {
   font-weight: bold;
-  color: #333;
+  color: var(--color-text);
   margin-right: 0.3rem;
 }
 
-.view-stats-btn, .view-roster-btn {
-  background-color: #17408B;
+.nba-container .view-stats-btn, .nba-container .view-roster-btn {
+  background-color: var(--color-nba);
   color: white;
   border: none;
   border-radius: 4px;
@@ -461,39 +452,39 @@
   font-weight: 500;
 }
 
-.view-stats-btn:hover, .view-roster-btn:hover {
+.nba-container .view-stats-btn:hover, .nba-container .view-roster-btn:hover {
   background-color: #C9082A; /* NBA red */
   transform: translateY(-2px);
 }
 
-.view-stats-btn:before {
+.nba-container .view-stats-btn:before {
   content: "📊 ";
   margin-right: 5px;
 }
 
-.view-roster-btn:before {
+.nba-container .view-roster-btn:before {
   content: "";
   margin-right: 0;
 }
 
-.placeholder-message {
+.nba-container .placeholder-message {
   text-align: center;
   padding: 3rem;
-  background-color: #f9f9f9;
+  background-color: var(--color-surface-elevated);
   border-radius: 8px;
 }
 
-.placeholder-message h3 {
-  color: #17408B;
+.nba-container .placeholder-message h3 {
+  color: var(--color-nba);
   margin-bottom: 1rem;
 }
 
-.placeholder-message p {
-  color: #666;
+.nba-container .placeholder-message p {
+  color: var(--color-text-secondary);
   margin-bottom: 0.5rem;
 }
 
-.loading-spinner {
+.nba-container .loading-spinner {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -501,43 +492,43 @@
   height: 300px;
 }
 
-.spinner {
+.nba-container .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  border-top: 4px solid #17408B;
+  border-top: 4px solid var(--color-nba);
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
   margin-bottom: 1rem;
 }
 
-.tabs {
+.nba-container .tabs {
   display: flex;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-border);
   margin-bottom: 2rem;
   overflow-x: auto;
   flex-wrap: nowrap;
   white-space: nowrap;
 }
 
-.tab-button {
+.nba-container .tab-button {
   background: none;
   border: none;
   padding: 1rem 1.2rem;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #666;
+  color: var(--color-text-secondary);
   transition: all 0.3s ease;
 }
 
-.tab-button:hover {
-  color: #17408B;
+.nba-container .tab-button:hover {
+  color: var(--color-nba);
 }
 
-.tab-button.active {
-  color: #17408B;
-  border-bottom: 3px solid #17408B;
+.nba-container .tab-button.active {
+  color: var(--color-nba);
+  border-bottom: 3px solid var(--color-nba);
 }
 
 @keyframes spin {
@@ -547,12 +538,52 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .nba-header h1 {
+.nba-container .nba-header h1 {
     font-size: 2rem;
   }
   
-  .tab-button {
+.nba-container .tab-button {
     padding: 0.8rem 1.2rem;
     font-size: 0.9rem;
   }
+}
+
+/* ==========================================================================
+   Phase 2 hardening — explicit overrides for NBA accent
+   ========================================================================== */
+
+.nba-container .tab-button.active,
+.nba-container .tab-button:hover,
+.nba-container .placeholder-message h3,
+.nba-container .nba-header h1,
+.nba-container .search-input:focus,
+.nba-container .player-card h3,
+.nba-container .team-card h3,
+.nba-container .selected-team-banner h2,
+.nba-container .selected-player-stats h2,
+.nba-container .games-container h3,
+.nba-container .standings-container h3,
+.nba-container .injuries-container h3,
+.nba-container .leaders-container h3,
+.nba-container .active-players-container h3 {
+  color: var(--color-nba) !important;
+  border-color: var(--color-nba) !important;
+}
+
+.nba-container .tab-button.active {
+  border-bottom-color: var(--color-nba) !important;
+}
+
+.nba-container .back-button {
+  background-color: var(--color-nba) !important;
+  color: white !important;
+}
+
+.nba-container .back-button:hover {
+  background-color: var(--color-nba-hover, var(--color-nba)) !important;
+  filter: brightness(1.1);
+}
+
+.nba-container .team-score {
+  color: var(--color-text) !important;
 }

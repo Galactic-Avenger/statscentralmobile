@@ -1,70 +1,250 @@
-/* index.css - Global styles */
+/* ==========================================================================
+   index.css — Stats Central design system
+   Sportsbook-dark theme, mobile-first.
+   All other CSS files reference these variables. Never hardcode colors.
+   ========================================================================== */
 
 :root {
-    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-  
-    color-scheme: light dark;
-    color: #213547;
-    background-color: #f7f8fc;
-  
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  /* ---- Color: Background layers (darkest → lightest) ---- */
+  --color-bg: #0a0e16;              /* page background */
+  --color-surface: #141a24;         /* cards, panels */
+  --color-surface-elevated: #1d2533;/* hover, modal, pressed */
+  --color-border: #2a3243;          /* subtle dividers */
+  --color-border-strong: #3d4659;   /* prominent dividers */
+
+  /* ---- Color: Text ---- */
+  --color-text: #f1f3f5;            /* primary copy, headings */
+  --color-text-secondary: #9ca3b1;  /* labels, captions */
+  --color-text-muted: #5a6478;      /* placeholders, disabled */
+
+  /* ---- Color: Brand & status ---- */
+  --color-accent: #ff6b00;          /* primary brand orange */
+  --color-accent-hover: #ff8124;
+  --color-accent-pressed: #e55f00;
+  --color-positive: #00d97e;        /* sportsbook green: wins, positive odds */
+  --color-negative: #f5365c;        /* sportsbook red: losses, negative odds */
+  --color-warning: #ffb547;         /* questionable status, alerts */
+  --color-info: #11cdef;            /* informational tags */
+
+  /* ---- Color: Per-sport accents ---- */
+  --color-nba: #ff6b00;             /* basketball orange */
+  --color-nfl: #00b85e;             /* football field green */
+  --color-mlb: #e63946;             /* baseball red */
+  --color-epl: #9333ea;             /* premier league purple */
+
+  /* ---- Typography ---- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter', sans-serif; /* for big headings; same family, different weight */
+
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+  --text-5xl: 3rem;      /* 48px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* ---- Spacing scale (4-pt grid) ---- */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+
+  /* ---- Radius ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* ---- Shadows (subtle on dark; mostly used for elevation) ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+  --shadow-glow-accent: 0 0 24px rgba(255, 107, 0, 0.25);
+
+  /* ---- Layout dims ---- */
+  --bottom-nav-height: 64px;
+  --top-nav-height: 56px;
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 220ms;
+
+  /* ---- Base typography settings ---- */
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: var(--font-weight-normal);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Tabular numbers everywhere — sports stats need aligned columns */
+  font-feature-settings: 'tnum' 1, 'cv11' 1;
+
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+/* ==========================================================================
+   Base reset
+   ========================================================================== */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  min-width: 320px;
+  -webkit-tap-highlight-color: transparent; /* iOS: no blue flash on tap */
+  overflow-x: hidden;
+}
+
+body {
+  /* Padding for iPhone notch / dynamic island / home indicator */
+  padding-top: var(--safe-area-top);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Typography defaults
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-2xl); }
+h3 { font-size: var(--text-xl); }
+h4 { font-size: var(--text-lg); }
+
+p {
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-accent);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+a:hover { color: var(--color-accent-hover); }
+
+/* ==========================================================================
+   Form controls
+   ========================================================================== */
+
+button {
+  font-family: inherit;
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  /* Always at least 44pt for tap targets — Apple HIG minimum */
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+}
+
+button:hover { background: var(--color-surface-elevated); }
+button:active { transform: scale(0.97); }
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: var(--text-base);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  min-height: 44px;
+  width: 100%;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+input::placeholder { color: var(--color-text-muted); }
+
+/* ==========================================================================
+   Scrollbar styling (subtle on dark)
+   ========================================================================== */
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-border-strong); }
+
+/* ==========================================================================
+   Utility classes
+   ========================================================================== */
+
+.tabular-nums { font-variant-numeric: tabular-nums; }
+.text-positive { color: var(--color-positive); }
+.text-negative { color: var(--color-negative); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+
+/* Hide visually but keep accessible */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border-width: 0;
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
-  }
-  
-  h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
-  }
-  
-  button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #f9f9f9;
-    cursor: pointer;
-    transition: border-color 0.25s;
-  }
-  
-  button:hover {
-    border-color: #646cff;
-  }
-  
-  button:focus,
-  button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
-  
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  /* Dark mode considerations */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      color: rgba(255, 255, 255, 0.87);
-      background-color: #242424;
-    }
-    button {
-      background-color: #1a1a1a;
-    }
-  }
+}

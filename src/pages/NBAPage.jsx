@@ -416,7 +416,7 @@ function NBAPage() {
                       className="view-stats-btn"
                       onClick={() => fetchPlayerStats(player.id)}
                       style={{
-                        backgroundColor: "#17408B",
+                        backgroundColor: "var(--color-nba)",
                         color: "white",
                         border: "none",
                         borderRadius: "4px",
@@ -464,7 +464,7 @@ function NBAPage() {
                       className="view-roster-btn"
                       onClick={() => fetchTeamRoster(team.id)}
                       style={{
-                        backgroundColor: "#17408B",
+                        backgroundColor: "var(--color-nba)",
                         color: "white",
                         border: "none",
                         borderRadius: "4px",
@@ -501,7 +501,7 @@ function NBAPage() {
                     className="view-stats-btn"
                     onClick={fetchGames}
                     style={{
-                      backgroundColor: "#17408B",
+                      backgroundColor: "var(--color-nba)",
                       color: "white",
                       border: "none",
                       borderRadius: "4px",
@@ -538,7 +538,7 @@ function NBAPage() {
                         className="view-stats-btn"
                         onClick={() => handleGameClick(game)}
                         style={{
-                          backgroundColor: "#17408B",
+                          backgroundColor: "var(--color-nba)",
                           color: "white",
                           border: "none",
                           borderRadius: "4px",
@@ -576,16 +576,16 @@ function NBAPage() {
       <div className="standings-tables" style={{ display: 'flex', flexDirection: 'column', maxWidth: '1100px', margin: '0 auto', gap: '30px' }}>
         {/* Make both tables have the same structure and column count */}
         <div className="conference-standings">
-          <h4 style={{ textAlign: 'center', marginBottom: '15px', color: '#17408B', fontSize: '1.3rem' }}>Eastern Conference</h4>
+          <h4 style={{ textAlign: 'center', marginBottom: '15px', color: 'var(--color-nba)', fontSize: '1.3rem' }}>Eastern Conference</h4>
           <table className="standings-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>Rank</th>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '220px', textAlign: 'left' }}>Team</th>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>W</th>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>L</th>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '80px', textAlign: 'center' }}>Win%</th>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>GB</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>Rank</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '220px', textAlign: 'left' }}>Team</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>W</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>L</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '80px', textAlign: 'center' }}>Win%</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>GB</th>
               </tr>
             </thead>
             <tbody>
@@ -593,15 +593,15 @@ function NBAPage() {
                 .filter(team => team.team.conference === 'East')
                 .sort((a, b) => b.win_percentage - a.win_percentage)
                 .map((standing, index) => (
-                  <tr key={standing.team.id} style={{ backgroundColor: index % 2 === 0 ? 'white' : '#f8f9fa' }}>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid #eee' }}>{index + 1}</td>
-                    <td style={{ padding: '10px', textAlign: 'left', borderBottom: '1px solid #eee', fontWeight: '500' }}>{standing.team.full_name}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid #eee' }}>{standing.wins}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid #eee' }}>{standing.losses}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid #eee' }}>
+                  <tr key={standing.team.id} style={{ backgroundColor: index % 2 === 0 ? 'var(--color-surface)' : 'var(--color-surface-elevated)' }}>
+                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{index + 1}</td>
+                    <td style={{ padding: '10px', textAlign: 'left', borderBottom: '1px solid var(--color-border)', fontWeight: '500' }}>{standing.team.full_name}</td>
+                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{standing.wins}</td>
+                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{standing.losses}</td>
+                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>
                       {((standing.wins / (standing.wins + standing.losses)) * 100).toFixed(1)}%
                     </td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid #eee' }}>{formatGamesBehind(standing.games_behind)}</td>
+                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{formatGamesBehind(standing.games_behind)}</td>
                   </tr>
                 ))
               }
@@ -610,16 +610,16 @@ function NBAPage() {
         </div>
                 
         <div className="conference-standings">
-          <h4 style={{ textAlign: 'center', marginBottom: '15px', color: '#17408B', fontSize: '1.3rem' }}>Western Conference</h4>
+          <h4 style={{ textAlign: 'center', marginBottom: '15px', color: 'var(--color-nba)', fontSize: '1.3rem' }}>Western Conference</h4>
           <table className="standings-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>Rank</th>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '220px', textAlign: 'left' }}>Team</th>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>W</th>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>L</th>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '80px', textAlign: 'center' }}>Win%</th>
-                <th style={{ backgroundColor: '#17408B', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>GB</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>Rank</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '220px', textAlign: 'left' }}>Team</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>W</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>L</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '80px', textAlign: 'center' }}>Win%</th>
+                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>GB</th>
               </tr>
             </thead>
             <tbody>
@@ -627,15 +627,15 @@ function NBAPage() {
                 .filter(team => team.team.conference === 'West')
                 .sort((a, b) => b.win_percentage - a.win_percentage)
                 .map((standing, index) => (
-                  <tr key={standing.team.id} style={{ backgroundColor: index % 2 === 0 ? 'white' : '#f8f9fa' }}>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid #eee' }}>{index + 1}</td>
-                    <td style={{ padding: '10px', textAlign: 'left', borderBottom: '1px solid #eee', fontWeight: '500' }}>{standing.team.full_name}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid #eee' }}>{standing.wins}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid #eee' }}>{standing.losses}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid #eee' }}>
+                  <tr key={standing.team.id} style={{ backgroundColor: index % 2 === 0 ? 'var(--color-surface)' : 'var(--color-surface-elevated)' }}>
+                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{index + 1}</td>
+                    <td style={{ padding: '10px', textAlign: 'left', borderBottom: '1px solid var(--color-border)', fontWeight: '500' }}>{standing.team.full_name}</td>
+                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{standing.wins}</td>
+                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{standing.losses}</td>
+                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>
                       {((standing.wins / (standing.wins + standing.losses)) * 100).toFixed(1)}%
                     </td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid #eee' }}>{formatGamesBehind(standing.games_behind)}</td>
+                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{formatGamesBehind(standing.games_behind)}</td>
                   </tr>
                 ))
               }
@@ -657,7 +657,7 @@ function NBAPage() {
                     className="view-stats-btn"
                     onClick={fetchInjuries}
                     style={{
-                      backgroundColor: "#17408B",
+                      backgroundColor: "var(--color-nba)",
                       color: "white",
                       border: "none",
                       borderRadius: "4px",
@@ -685,7 +685,7 @@ function NBAPage() {
                           className="view-stats-btn"
                           onClick={() => injury.player.id && fetchPlayerStats(injury.player.id)}
                           style={{
-                            backgroundColor: "#17408B",
+                            backgroundColor: "var(--color-nba)",
                             color: "white",
                             border: "none",
                             borderRadius: "4px",
@@ -716,7 +716,7 @@ function NBAPage() {
           className="view-stats-btn"
           onClick={fetchLeaders}
           style={{
-            backgroundColor: "#17408B",
+            backgroundColor: "var(--color-nba)",
             color: "white",
             border: "none",
             borderRadius: "4px",
@@ -733,7 +733,7 @@ function NBAPage() {
     {leaders.length > 0 && (
       <div className="leaders-section">
         <h4 style={{ 
-          color: '#333', 
+          color: 'var(--color-text)', 
           marginBottom: '1.5rem', 
           textAlign: 'center',
           fontSize: '1.2rem',
@@ -747,7 +747,7 @@ function NBAPage() {
           {leaders.map((leader, index) => (
             <div key={`leader-${index}`} className="leader-card" style={{
               display: "flex",
-              backgroundColor: "#fff",
+              backgroundColor: 'var(--color-surface)',
               borderRadius: "8px",
               boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
               padding: "1.5rem",
@@ -764,7 +764,7 @@ function NBAPage() {
                 justifyContent: "center",
                 width: "40px",
                 height: "40px",
-                backgroundColor: "#17408B",
+                backgroundColor: "var(--color-nba)",
                 color: "white",
                 borderRadius: "50%",
                 fontWeight: "bold",
@@ -783,7 +783,7 @@ function NBAPage() {
                   className="view-stats-btn"
                   onClick={() => leader.player.id && fetchPlayerStats(leader.player.id)}
                   style={{
-                    backgroundColor: "#17408B",
+                    backgroundColor: "var(--color-nba)",
                     color: "white",
                     border: "none",
                     borderRadius: "4px",

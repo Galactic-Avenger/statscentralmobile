@@ -4,14 +4,14 @@
 }
 
 .betting-odds-container h3 {
-  color: #17408B;
+  color: var(--color-nba);
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
   text-align: center;
 }
 
 .odds-grid {
-  background-color: #fff;
+  background-color: var(--color-surface);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
@@ -28,13 +28,13 @@
 }
 
 .odds-header h4 {
-  color: #333;
+  color: var(--color-text);
   margin: 0;
   font-size: 1.2rem;
 }
 
 .odds-disclaimer {
-  color: #999;
+  color: var(--color-text-muted);
   margin: 0;
 }
 
@@ -47,13 +47,13 @@
 .odds-table th,
 .odds-table td {
   padding: 1rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
   text-align: center;
 }
 
 .odds-table th {
-  background-color: #f8f9fa;
-  color: #666;
+  background-color: var(--color-surface-elevated);
+  color: var(--color-text-secondary);
   font-weight: 500;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .matchup-date {
-  color: #999;
+  color: var(--color-text-muted);
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
@@ -100,7 +100,7 @@
 }
 
 .home-badge {
-  background-color: #17408B;
+  background-color: var(--color-nba);
 }
 
 .away-badge {
@@ -120,12 +120,12 @@
 }
 
 .positive-odds {
-  color: #28a745;
+  color: var(--color-positive);
   font-weight: bold;
 }
 
 .negative-odds {
-  color: #dc3545;
+  color: var(--color-negative);
   font-weight: bold;
 }
 
@@ -134,19 +134,19 @@
 }
 
 .odds-value {
-  color: #666;
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
 }
 
 .odds-update {
   font-size: 0.8rem;
-  color: #999;
+  color: var(--color-text-muted);
 }
 
 .odds-footer {
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border);
 }
 
 .odds-footer p {
@@ -161,7 +161,7 @@
 .odds-footer li {
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-text-secondary);
 }
 
 /* Responsive adjustments */
