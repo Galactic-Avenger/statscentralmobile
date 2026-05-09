@@ -1,7 +1,5 @@
-/* ==========================================================================
-   HomePage.css
-   Hero with imagery, sport tiles with backgrounds, feature card grid.
-   ========================================================================== */
+/* HomePage.css
+   Hero with imagery, sport tiles with backgrounds, feature card grid. */
 
 .home-container {
   width: 100%;
@@ -9,9 +7,7 @@
   flex-direction: column;
 }
 
-/* ==========================================================================
-   Hero
-   ========================================================================== */
+/* Hero*/
 
 .home-hero {
   position: relative;
@@ -68,9 +64,7 @@
   margin: 0;
 }
 
-/* ==========================================================================
-   Sections
-   ========================================================================== */
+/* Sections */
 
 .home-section,
 .features-section {
@@ -86,9 +80,7 @@
   color: var(--color-text);
 }
 
-/* ==========================================================================
-   Sport tiles
-   ========================================================================== */
+/* Sport tiles */
 
 .sports-buttons {
   display: grid;
@@ -153,9 +145,7 @@
 .sport-button.mlb { box-shadow: inset 4px 0 0 var(--color-mlb); }
 .sport-button.epl { box-shadow: inset 4px 0 0 var(--color-epl); }
 
-/* ==========================================================================
-   Feature cards
-   ========================================================================== */
+/* Feature cards */
 
 .features-grid {
   display: grid;
@@ -198,9 +188,7 @@
   margin: 0;
 }
 
-/* ==========================================================================
-   Larger screens
-   ========================================================================== */
+/* Larger screens */
 
 @media (min-width: 768px) {
   .home-hero {

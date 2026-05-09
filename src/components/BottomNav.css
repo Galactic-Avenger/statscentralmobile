@@ -1,6 +1,6 @@
-/* ==========================================================================
-   BottomNav.css — iOS-style bottom tab bar
-   ========================================================================== */
+/*
+  BottomNav.css — iOS style bottom tab bar
+*/
 
 .bottom-nav {
   position: fixed;
@@ -72,9 +72,7 @@
   text-transform: uppercase;
 }
 
-/* ==========================================================================
-   Active states — each tab gets its sport color when active
-   ========================================================================== */
+/* Active states — each tab gets its sport color when active */
 
 .bottom-nav-link.is-active {
   color: var(--color-text);

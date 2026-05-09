@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom'
 import './BottomNav.css'
 
 /**
- * Bottom tab bar — iOS-style navigation.
+ * Bottom tab bar is an iOS style navigation.
  * Replaces the old hamburger menu. Five tabs: Home, NBA, NFL, MLB, EPL.
- * Each tab has a sport emoji icon, label, and an active-state accent
+ * Each tab has a sport emoji icon, label, and an active state accent
  * matching the sport's color (NBA orange, NFL green, MLB red, EPL purple).
  */
 const TABS = [

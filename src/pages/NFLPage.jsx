@@ -701,109 +701,109 @@ function NFLPage() {
                   {/* AFC Conference */}
                   <div className="conference-container">
                     <h4 className="conference-title">AFC</h4>
-                    
+
                     {['NORTH', 'SOUTH', 'EAST', 'WEST'].map(division => (
                       <div key={`afc-${division}`} className="division-standings">
                         <h5 className="division-title">AFC {division}</h5>
-                        <div className="division-table-wrapper">
-                          <table className="standings-table">
-                            <thead>
-                              <tr>
-                                <th>Team</th>
-                                <th>W</th>
-                                <th>L</th>
-                                <th>T</th>
-                                <th>PCT</th>
-                                <th>PF</th>
-                                <th>PA</th>
-                                <th>HOME</th>
-                                <th>AWAY</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {standings
-                                .filter(team => team.team.conference === 'AFC' && team.team.division === division)
-                                .sort((a, b) => {
-                                  // Sort by win percentage first
-                                  if (b.win_streak !== a.win_streak) {
-                                    return b.win_streak - a.win_streak;
-                                  }
-                                  // Then by head-to-head (not available in this data)
-                                  // Then by win percentage in division games
-                                  return b.division_record.localeCompare(a.division_record);
-                                })
-                                .map(standing => (
-                                  <tr key={standing.team.id}>
-                                    <td>{standing.team.full_name}</td>
-                                    <td>{standing.wins}</td>
-                                    <td>{standing.losses}</td>
-                                    <td>{standing.ties || 0}</td>
-                                    <td>{((standing.wins / (standing.wins + standing.losses + (standing.ties || 0))) * 100).toFixed(1)}%</td>
-                                    <td>{standing.points_for}</td>
-                                    <td>{standing.points_against}</td>
-                                    <td>{standing.home_record}</td>
-                                    <td>{standing.road_record}</td>
-                                  </tr>
-                                ))
-                              }
-                            </tbody>
-                          </table>
-                        </div>
+                        <ol className="standings-list">
+                          {standings
+                            .filter(team => team.team.conference === 'AFC' && team.team.division === division)
+                            .sort((a, b) => {
+                              if (b.win_streak !== a.win_streak) return b.win_streak - a.win_streak;
+                              return b.division_record.localeCompare(a.division_record);
+                            })
+                            .map((standing, idx) => {
+                              const total = standing.wins + standing.losses + (standing.ties || 0);
+                              const pct = total > 0 ? ((standing.wins / total) * 100).toFixed(1) : '0.0';
+                              return (
+                                <li key={standing.team.id} className="standings-row">
+                                  <span className="standings-rank">{idx + 1}</span>
+                                  <span className="standings-team">{standing.team.full_name}</span>
+                                  <div className="standings-stats">
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">W</span>
+                                      <span className="standings-stat-value">{standing.wins}</span>
+                                    </span>
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">L</span>
+                                      <span className="standings-stat-value">{standing.losses}</span>
+                                    </span>
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">T</span>
+                                      <span className="standings-stat-value">{standing.ties || 0}</span>
+                                    </span>
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">PCT</span>
+                                      <span className="standings-stat-value">{pct}%</span>
+                                    </span>
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">PF</span>
+                                      <span className="standings-stat-value">{standing.points_for}</span>
+                                    </span>
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">PA</span>
+                                      <span className="standings-stat-value">{standing.points_against}</span>
+                                    </span>
+                                  </div>
+                                </li>
+                              );
+                            })}
+                        </ol>
                       </div>
                     ))}
                   </div>
-                  
+
                   {/* NFC Conference */}
                   <div className="conference-container">
                     <h4 className="conference-title">NFC</h4>
-                    
+
                     {['NORTH', 'SOUTH', 'EAST', 'WEST'].map(division => (
                       <div key={`nfc-${division}`} className="division-standings">
                         <h5 className="division-title">NFC {division}</h5>
-                        <div className="division-table-wrapper">
-                          <table className="standings-table">
-                            <thead>
-                              <tr>
-                                <th>Team</th>
-                                <th>W</th>
-                                <th>L</th>
-                                <th>T</th>
-                                <th>PCT</th>
-                                <th>PF</th>
-                                <th>PA</th>
-                                <th>HOME</th>
-                                <th>AWAY</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {standings
-                                .filter(team => team.team.conference === 'NFC' && team.team.division === division)
-                                .sort((a, b) => {
-                                  // Sort by win percentage first
-                                  if (b.win_streak !== a.win_streak) {
-                                    return b.win_streak - a.win_streak;
-                                  }
-                                  // Then by head-to-head (not available in this data)
-                                  // Then by win percentage in division games
-                                  return b.division_record.localeCompare(a.division_record);
-                                })
-                                .map(standing => (
-                                  <tr key={standing.team.id}>
-                                    <td>{standing.team.full_name}</td>
-                                    <td>{standing.wins}</td>
-                                    <td>{standing.losses}</td>
-                                    <td>{standing.ties || 0}</td>
-                                    <td>{((standing.wins / (standing.wins + standing.losses + (standing.ties || 0))) * 100).toFixed(1)}%</td>
-                                    <td>{standing.points_for}</td>
-                                    <td>{standing.points_against}</td>
-                                    <td>{standing.home_record}</td>
-                                    <td>{standing.road_record}</td>
-                                  </tr>
-                                ))
-                              }
-                            </tbody>
-                          </table>
-                        </div>
+                        <ol className="standings-list">
+                          {standings
+                            .filter(team => team.team.conference === 'NFC' && team.team.division === division)
+                            .sort((a, b) => {
+                              if (b.win_streak !== a.win_streak) return b.win_streak - a.win_streak;
+                              return b.division_record.localeCompare(a.division_record);
+                            })
+                            .map((standing, idx) => {
+                              const total = standing.wins + standing.losses + (standing.ties || 0);
+                              const pct = total > 0 ? ((standing.wins / total) * 100).toFixed(1) : '0.0';
+                              return (
+                                <li key={standing.team.id} className="standings-row">
+                                  <span className="standings-rank">{idx + 1}</span>
+                                  <span className="standings-team">{standing.team.full_name}</span>
+                                  <div className="standings-stats">
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">W</span>
+                                      <span className="standings-stat-value">{standing.wins}</span>
+                                    </span>
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">L</span>
+                                      <span className="standings-stat-value">{standing.losses}</span>
+                                    </span>
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">T</span>
+                                      <span className="standings-stat-value">{standing.ties || 0}</span>
+                                    </span>
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">PCT</span>
+                                      <span className="standings-stat-value">{pct}%</span>
+                                    </span>
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">PF</span>
+                                      <span className="standings-stat-value">{standing.points_for}</span>
+                                    </span>
+                                    <span className="standings-stat">
+                                      <span className="standings-stat-label">PA</span>
+                                      <span className="standings-stat-value">{standing.points_against}</span>
+                                    </span>
+                                  </div>
+                                </li>
+                              );
+                            })}
+                        </ol>
                       </div>
                     ))}
                   </div>

@@ -573,75 +573,47 @@ function NBAPage() {
       </div>
     )}
     {standings.length > 0 && (
-      <div className="standings-tables" style={{ display: 'flex', flexDirection: 'column', maxWidth: '1100px', margin: '0 auto', gap: '30px' }}>
-        {/* Make both tables have the same structure and column count */}
-        <div className="conference-standings">
-          <h4 style={{ textAlign: 'center', marginBottom: '15px', color: 'var(--color-nba)', fontSize: '1.3rem' }}>Eastern Conference</h4>
-          <table className="standings-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>Rank</th>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '220px', textAlign: 'left' }}>Team</th>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>W</th>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>L</th>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '80px', textAlign: 'center' }}>Win%</th>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>GB</th>
-              </tr>
-            </thead>
-            <tbody>
+      <div className="standings-wrapper">
+        {['East', 'West'].map(conf => (
+          <div key={conf} className="conference-standings">
+            <h4 className="conference-title">
+              {conf === 'East' ? 'Eastern' : 'Western'} Conference
+            </h4>
+            <ol className="standings-list">
               {standings
-                .filter(team => team.team.conference === 'East')
+                .filter(team => team.team.conference === conf)
                 .sort((a, b) => b.win_percentage - a.win_percentage)
-                .map((standing, index) => (
-                  <tr key={standing.team.id} style={{ backgroundColor: index % 2 === 0 ? 'var(--color-surface)' : 'var(--color-surface-elevated)' }}>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{index + 1}</td>
-                    <td style={{ padding: '10px', textAlign: 'left', borderBottom: '1px solid var(--color-border)', fontWeight: '500' }}>{standing.team.full_name}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{standing.wins}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{standing.losses}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>
-                      {((standing.wins / (standing.wins + standing.losses)) * 100).toFixed(1)}%
-                    </td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{formatGamesBehind(standing.games_behind)}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
-                
-        <div className="conference-standings">
-          <h4 style={{ textAlign: 'center', marginBottom: '15px', color: 'var(--color-nba)', fontSize: '1.3rem' }}>Western Conference</h4>
-          <table className="standings-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>Rank</th>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '220px', textAlign: 'left' }}>Team</th>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>W</th>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>L</th>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '80px', textAlign: 'center' }}>Win%</th>
-                <th style={{ backgroundColor: 'var(--color-nba)', color: 'white', padding: '10px', width: '60px', textAlign: 'center' }}>GB</th>
-              </tr>
-            </thead>
-            <tbody>
-              {standings
-                .filter(team => team.team.conference === 'West')
-                .sort((a, b) => b.win_percentage - a.win_percentage)
-                .map((standing, index) => (
-                  <tr key={standing.team.id} style={{ backgroundColor: index % 2 === 0 ? 'var(--color-surface)' : 'var(--color-surface-elevated)' }}>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{index + 1}</td>
-                    <td style={{ padding: '10px', textAlign: 'left', borderBottom: '1px solid var(--color-border)', fontWeight: '500' }}>{standing.team.full_name}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{standing.wins}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{standing.losses}</td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>
-                      {((standing.wins / (standing.wins + standing.losses)) * 100).toFixed(1)}%
-                    </td>
-                    <td style={{ padding: '10px', textAlign: 'center', borderBottom: '1px solid var(--color-border)' }}>{formatGamesBehind(standing.games_behind)}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
+                .map((standing, index) => {
+                  const total = standing.wins + standing.losses;
+                  const pct = total > 0 ? ((standing.wins / total) * 100).toFixed(1) : '0.0';
+                  return (
+                    <li key={standing.team.id} className="standings-row">
+                      <span className="standings-rank">{index + 1}</span>
+                      <span className="standings-team">{standing.team.full_name}</span>
+                      <div className="standings-stats">
+                        <span className="standings-stat">
+                          <span className="standings-stat-label">W</span>
+                          <span className="standings-stat-value">{standing.wins}</span>
+                        </span>
+                        <span className="standings-stat">
+                          <span className="standings-stat-label">L</span>
+                          <span className="standings-stat-value">{standing.losses}</span>
+                        </span>
+                        <span className="standings-stat">
+                          <span className="standings-stat-label">PCT</span>
+                          <span className="standings-stat-value">{pct}%</span>
+                        </span>
+                        <span className="standings-stat">
+                          <span className="standings-stat-label">GB</span>
+                          <span className="standings-stat-value">{formatGamesBehind(standing.games_behind)}</span>
+                        </span>
+                      </div>
+                    </li>
+                  );
+                })}
+            </ol>
+          </div>
+        ))}
       </div>
     )}
   </div>

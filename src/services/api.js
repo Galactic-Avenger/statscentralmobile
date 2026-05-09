@@ -1,15 +1,11 @@
 // src/services/api.js
 //
-// Local-data API service. Replaces all network calls to balldontlie.io
+// Local-data API service. Replaces all network calls to balldontlie.io 
 // with reads from JSON files in src/data/.
 //
-// Why? The paid endpoints (standings, stats, leaders, injuries, betting odds)
+// This was done because the paid endpoints (standings, stats, leaders, injuries, betting odds)
 // returned 401 Unauthorized, and the free endpoints rate-limited (429) on
-// rapid search input. By serving everything from local files we get:
-//   - no API key required
-//   - no internet required
-//   - no rate limits
-//   - guaranteed data for the demo
+// rapid search input. 
 //
 // Component code calls the same function names. Each returns a Promise so
 // existing async/await and .then() patterns keep working unchanged.

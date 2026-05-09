@@ -1,0 +1,16 @@
+{
+  "appId": "com.statscentral.app",
+  "appName": "Stats Central",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1500,
+      "launchAutoHide": true,
+      "backgroundColor": "#0a0e16",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true,
+      "iosContentMode": "scaleAspectFit"
+    }
+  }
+}

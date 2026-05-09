@@ -23,3 +23,18 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+
+# Capacitor / iOS — Pods are huge and regenerated on every install
+ios/App/Pods/
+ios/App/Podfile.lock
+ios/App/build/
+ios/DerivedData/
+ios/capacitor-cordova-ios-plugins/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Capacitor build outputs (web side)
+.capacitor/

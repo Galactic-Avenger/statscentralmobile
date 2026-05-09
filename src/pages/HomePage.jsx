@@ -11,15 +11,16 @@ import './HomePage.css'
  * have to manage local image assets — keeps the repo lightweight for the demo.
  */
 
-const heroImg =
-  'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&q=80&auto=format&fit=crop';
-
-// Per-sport background images chosen for high contrast / dramatic feel
+// Per-sport background images. Local first (in /images/), with Unsplash CDN
+// as a fallback if the local files aren't available (e.g., during early dev
+// before downloading them). For Capacitor/iOS we want the local versions
+// so the app works offline.
+const heroImg = '/images/hero.jpg';
 const sportImg = {
-  nba: 'https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=800&q=80&auto=format&fit=crop',
-  nfl: 'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=800&q=80&auto=format&fit=crop',
-  mlb: 'https://images.unsplash.com/photo-1508344928-9165cb6b6ddd?w=800&q=80&auto=format&fit=crop',
-  epl: 'https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&q=80&auto=format&fit=crop',
+  nba: '/images/nba.jpg',
+  nfl: '/images/nfl.jpg',
+  mlb: '/images/mlb.jpg',
+  epl: '/images/epl.jpg',
 };
 
 const SportTile = ({ to, sport, label, sub }) => (

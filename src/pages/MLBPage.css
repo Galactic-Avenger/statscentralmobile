@@ -471,9 +471,7 @@
   }
 }
 
-/* ==========================================================================
-   Phase 2 hardening — explicit overrides for MLB accent
-   ========================================================================== */
+/* Phase 2 hardening — explicit overrides for MLB accent */
 
 .mlb-container .tab-button.active,
 .mlb-container .tab-button:hover,

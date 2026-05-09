@@ -867,7 +867,7 @@
   margin-top: 2.5rem;
 }
 
-/* Make sure all game cards have the same layout even when no scores present */
+/* To make sure all game cards have the same layout even when no scores present */
 .nfl-container .game-card:not(:has(.team-score)) .game-teams {
   min-height: 100px;
 }
@@ -912,9 +912,9 @@
   }
 }
 
-/* ==========================================================================
-   Phase 2 hardening — explicit overrides for NFL accent
-   ========================================================================== */
+/*
+    explicit overrides for NFL accent
+*/
 
 .nfl-container .tab-button.active,
 .nfl-container .tab-button:hover,
@@ -950,4 +950,518 @@
 
 .nfl-container .team-score {
   color: var(--color-text) !important;
+}
+
+
+/* -------- 1. Container & header -------- */
+.nfl-container {
+  padding: var(--space-3);
+  max-width: 100%;
+}
+
+.nfl-container .nfl-header {
+  text-align: center;
+  margin-bottom: var(--space-5);
+  padding-top: var(--space-3);
+}
+
+.nfl-container .nfl-header h1 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-2);
+}
+
+.nfl-container .nfl-header p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* -------- 2. Search input — pill style -------- */
+.nfl-container .search-bar {
+  margin-bottom: var(--space-4);
+}
+
+.nfl-container .search-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-base);
+  outline: none;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.nfl-container .search-input::placeholder { color: var(--color-text-muted); }
+
+.nfl-container .search-input:focus {
+  border-color: var(--color-nfl) !important;
+}
+
+/* -------- 3. Tab bar — horizontal scroll with snap and fade hint -------- */
+.nfl-container .tabs {
+  display: flex;
+  gap: var(--space-1);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-5);
+  /* Soft fade at the right edge so users see there's more to scroll to */
+  mask-image: linear-gradient(to right, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+  /* Hide scrollbar */
+  scrollbar-width: none;
+}
+.nfl-container .tabs::-webkit-scrollbar { display: none; }
+
+.nfl-container .tab-button {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  background: none;
+  border: none;
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: -1px;            /* sit on the bottom border */
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px;
+  transition: color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out);
+}
+
+.nfl-container .tab-button:hover { color: var(--color-nfl) !important; }
+
+.nfl-container .tab-button.active {
+  color: var(--color-nfl) !important;
+  border-bottom-color: var(--color-nfl) !important;
+}
+
+/* -------- 4. Sport-colored "Load X" buttons (load standings, etc) -------- */
+.nfl-container .view-stats-btn,
+.nfl-container .placeholder-message + .view-stats-btn,
+.nfl-container .placeholder-message .view-stats-btn {
+  background: var(--color-nfl);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-5);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-sm);
+  min-height: 44px;
+  cursor: pointer;
+  transition: filter var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+.nfl-container .view-stats-btn:hover { filter: brightness(1.1); }
+.nfl-container .view-stats-btn:active { transform: scale(0.98); }
+
+/* -------- 5. Card grids — tighter on mobile -------- */
+.nfl-container .players-grid,
+.nfl-container .teams-grid,
+.nfl-container .games-list,
+.nfl-container .active-players-grid,
+.nfl-container .leaders-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .nfl-container .players-grid,
+  .nfl-container .teams-grid,
+  .nfl-container .games-list,
+  .nfl-container .active-players-grid,
+  .nfl-container .leaders-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .nfl-container .players-grid,
+  .nfl-container .teams-grid,
+  .nfl-container .games-list,
+  .nfl-container .active-players-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* -------- 6. Player & team cards — stripe + better hierarchy -------- */
+.nfl-container .player-card,
+.nfl-container .team-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-nfl);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: none;
+  transition: border-color var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+.nfl-container .player-card:hover,
+.nfl-container .team-card:hover {
+  border-color: var(--color-nfl);
+  background: var(--color-surface-elevated);
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+
+.nfl-container .player-card h3,
+.nfl-container .team-card h3 {
+  color: var(--color-nfl) !important;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-3);
+}
+
+.nfl-container .player-info p,
+.nfl-container .team-info p {
+  margin: var(--space-1) 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.nfl-container .player-info p strong,
+.nfl-container .team-info p strong {
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+  display: inline-block;
+  min-width: 90px;
+}
+
+/* -------- 7. STANDINGS — card list (replaces table) -------- */
+.nfl-container .standings-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.nfl-container .conference-standings,
+.nfl-container .division-standings {
+  background: transparent;
+}
+
+.nfl-container .conference-title {
+  color: var(--color-nfl) !important;
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-3);
+  text-align: left;
+}
+
+.nfl-container .division-title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin: var(--space-4) 0 var(--space-2);
+}
+
+.nfl-container .standings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.nfl-container .standings-row {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.nfl-container .standings-row:hover {
+  border-color: var(--color-nfl);
+}
+
+.nfl-container .standings-rank {
+  grid-row: 1 / 3;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-nfl);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.05em;
+}
+
+.nfl-container .standings-team {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nfl-container .standings-stats {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.nfl-container .standings-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+}
+
+.nfl-container .standings-stat-label {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.nfl-container .standings-stat-value {
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* -------- 8. Game cards — cleaner mobile layout -------- */
+.nfl-container .game-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-nfl);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: none;
+}
+
+.nfl-container .game-card:hover {
+  border-color: var(--color-nfl);
+  transform: none;
+  box-shadow: none;
+}
+
+.nfl-container .game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nfl-container .game-status {
+  color: var(--color-nfl) !important;
+  font-weight: var(--font-weight-bold);
+}
+
+.nfl-container .team {
+  padding: var(--space-2) 0;
+}
+
+.nfl-container .team-name {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.nfl-container .team-score {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-text) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.nfl-container .vs {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: var(--space-1) 0;
+}
+
+/* -------- 9. Selected team / player banner -------- */
+.nfl-container .selected-team-banner,
+.nfl-container .selected-player-stats {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-nfl);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.nfl-container .selected-team-banner h2,
+.nfl-container .selected-player-stats h2 {
+  color: var(--color-nfl) !important;
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-3);
+}
+
+.nfl-container .back-button {
+  background: var(--color-nfl) !important;
+  color: white !important;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  min-height: 36px;
+}
+
+.nfl-container .back-button:hover {
+  background: var(--color-nfl) !important;
+  filter: brightness(1.1);
+}
+
+/* -------- 10. Injuries & leaders cards -------- */
+.nfl-container .injuries-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.nfl-container .injury-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.nfl-container .injury-card h4 {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.nfl-container .injury-card p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: var(--space-1) 0;
+}
+
+.nfl-container .injury-status {
+  display: inline-block;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--color-warning);
+  color: var(--color-bg);
+}
+
+.nfl-container .leader-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.nfl-container .leader-rank {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-nfl);
+  color: white;
+  font-weight: var(--font-weight-black);
+  border-radius: 50%;
+  font-size: var(--text-base);
+}
+
+.nfl-container .leader-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.nfl-container .leader-info h4 {
+  font-size: var(--text-base);
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nfl-container .leader-info p {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* -------- 11. Placeholder messages -------- */
+.nfl-container .placeholder-message {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+}
+
+.nfl-container .placeholder-message h3 {
+  color: var(--color-nfl) !important;
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+}
+
+.nfl-container .placeholder-message p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+/* -------- 12. Larger screens — restore some breathing room -------- */
+@media (min-width: 768px) {
+  .nfl-container {
+    padding: var(--space-6);
+  }
+  .nfl-container .nfl-header h1 {
+    font-size: var(--text-4xl);
+  }
+  .nfl-container .standings-row {
+    grid-template-columns: 60px 240px 1fr;
+    grid-template-rows: 1fr;
+  }
+  .nfl-container .standings-rank {
+    grid-row: 1;
+  }
+  .nfl-container .standings-team {
+    grid-row: 1;
+    font-size: var(--text-lg);
+  }
+  .nfl-container .standings-stats {
+    grid-row: 1;
+    justify-content: flex-end;
+    gap: var(--space-5);
+  }
 }

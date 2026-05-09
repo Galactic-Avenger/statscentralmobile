@@ -587,3 +587,519 @@
 .nba-container .team-score {
   color: var(--color-text) !important;
 }
+
+
+
+
+/* -------- 1. Container & header -------- */
+.nba-container {
+  padding: var(--space-3);
+  max-width: 100%;
+}
+
+.nba-container .nba-header {
+  text-align: center;
+  margin-bottom: var(--space-5);
+  padding-top: var(--space-3);
+}
+
+.nba-container .nba-header h1 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-2);
+}
+
+.nba-container .nba-header p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* -------- 2. Search input — pill style -------- */
+.nba-container .search-bar {
+  margin-bottom: var(--space-4);
+}
+
+.nba-container .search-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-base);
+  outline: none;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.nba-container .search-input::placeholder { color: var(--color-text-muted); }
+
+.nba-container .search-input:focus {
+  border-color: var(--color-nba) !important;
+}
+
+/* -------- 3. Tab bar — horizontal scroll with snap and fade hint -------- */
+.nba-container .tabs {
+  display: flex;
+  gap: var(--space-1);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-5);
+  /* Soft fade at the right edge so users see there's more to scroll to */
+  mask-image: linear-gradient(to right, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+  /* Hide scrollbar */
+  scrollbar-width: none;
+}
+.nba-container .tabs::-webkit-scrollbar { display: none; }
+
+.nba-container .tab-button {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  background: none;
+  border: none;
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: -1px;            /* sit on the bottom border */
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px;
+  transition: color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out);
+}
+
+.nba-container .tab-button:hover { color: var(--color-nba) !important; }
+
+.nba-container .tab-button.active {
+  color: var(--color-nba) !important;
+  border-bottom-color: var(--color-nba) !important;
+}
+
+/* -------- 4. Sport-colored "Load X" buttons (load standings, etc) -------- */
+.nba-container .view-stats-btn,
+.nba-container .placeholder-message + .view-stats-btn,
+.nba-container .placeholder-message .view-stats-btn {
+  background: var(--color-nba);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-5);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-sm);
+  min-height: 44px;
+  cursor: pointer;
+  transition: filter var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+.nba-container .view-stats-btn:hover { filter: brightness(1.1); }
+.nba-container .view-stats-btn:active { transform: scale(0.98); }
+
+/* -------- 5. Card grids — tighter on mobile -------- */
+.nba-container .players-grid,
+.nba-container .teams-grid,
+.nba-container .games-list,
+.nba-container .active-players-grid,
+.nba-container .leaders-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .nba-container .players-grid,
+  .nba-container .teams-grid,
+  .nba-container .games-list,
+  .nba-container .active-players-grid,
+  .nba-container .leaders-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .nba-container .players-grid,
+  .nba-container .teams-grid,
+  .nba-container .games-list,
+  .nba-container .active-players-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* -------- 6. Player & team cards — stripe + better hierarchy -------- */
+.nba-container .player-card,
+.nba-container .team-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-nba);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: none;
+  transition: border-color var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+.nba-container .player-card:hover,
+.nba-container .team-card:hover {
+  border-color: var(--color-nba);
+  background: var(--color-surface-elevated);
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+
+.nba-container .player-card h3,
+.nba-container .team-card h3 {
+  color: var(--color-nba) !important;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-3);
+}
+
+.nba-container .player-info p,
+.nba-container .team-info p {
+  margin: var(--space-1) 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.nba-container .player-info p strong,
+.nba-container .team-info p strong {
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+  display: inline-block;
+  min-width: 90px;
+}
+
+/* -------- 7. STANDINGS — card list (replaces table) -------- */
+.nba-container .standings-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.nba-container .conference-standings,
+.nba-container .division-standings {
+  background: transparent;
+}
+
+.nba-container .conference-title {
+  color: var(--color-nba) !important;
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-3);
+  text-align: left;
+}
+
+.nba-container .division-title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin: var(--space-4) 0 var(--space-2);
+}
+
+.nba-container .standings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.nba-container .standings-row {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.nba-container .standings-row:hover {
+  border-color: var(--color-nba);
+}
+
+.nba-container .standings-rank {
+  grid-row: 1 / 3;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-nba);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.05em;
+}
+
+.nba-container .standings-team {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nba-container .standings-stats {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.nba-container .standings-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+}
+
+.nba-container .standings-stat-label {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.nba-container .standings-stat-value {
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* -------- 8. Game cards — cleaner mobile layout -------- */
+.nba-container .game-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-nba);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: none;
+}
+
+.nba-container .game-card:hover {
+  border-color: var(--color-nba);
+  transform: none;
+  box-shadow: none;
+}
+
+.nba-container .game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nba-container .game-status {
+  color: var(--color-nba) !important;
+  font-weight: var(--font-weight-bold);
+}
+
+.nba-container .team {
+  padding: var(--space-2) 0;
+}
+
+.nba-container .team-name {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.nba-container .team-score {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-text) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.nba-container .vs {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: var(--space-1) 0;
+}
+
+/* -------- 9. Selected team / player banner -------- */
+.nba-container .selected-team-banner,
+.nba-container .selected-player-stats {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-nba);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.nba-container .selected-team-banner h2,
+.nba-container .selected-player-stats h2 {
+  color: var(--color-nba) !important;
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-3);
+}
+
+.nba-container .back-button {
+  background: var(--color-nba) !important;
+  color: white !important;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  min-height: 36px;
+}
+
+.nba-container .back-button:hover {
+  background: var(--color-nba) !important;
+  filter: brightness(1.1);
+}
+
+/* -------- 10. Injuries & leaders cards -------- */
+.nba-container .injuries-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.nba-container .injury-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.nba-container .injury-card h4 {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.nba-container .injury-card p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: var(--space-1) 0;
+}
+
+.nba-container .injury-status {
+  display: inline-block;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--color-warning);
+  color: var(--color-bg);
+}
+
+.nba-container .leader-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.nba-container .leader-rank {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-nba);
+  color: white;
+  font-weight: var(--font-weight-black);
+  border-radius: 50%;
+  font-size: var(--text-base);
+}
+
+.nba-container .leader-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.nba-container .leader-info h4 {
+  font-size: var(--text-base);
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nba-container .leader-info p {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* -------- 11. Placeholder messages -------- */
+.nba-container .placeholder-message {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+}
+
+.nba-container .placeholder-message h3 {
+  color: var(--color-nba) !important;
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+}
+
+.nba-container .placeholder-message p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+/* -------- 12. Larger screens — restore some breathing room -------- */
+@media (min-width: 768px) {
+  .nba-container {
+    padding: var(--space-6);
+  }
+  .nba-container .nba-header h1 {
+    font-size: var(--text-4xl);
+  }
+  .nba-container .standings-row {
+    grid-template-columns: 60px 240px 1fr;
+    grid-template-rows: 1fr;
+  }
+  .nba-container .standings-rank {
+    grid-row: 1;
+  }
+  .nba-container .standings-team {
+    grid-row: 1;
+    font-size: var(--text-lg);
+  }
+  .nba-container .standings-stats {
+    grid-row: 1;
+    justify-content: flex-end;
+    gap: var(--space-5);
+  }
+}

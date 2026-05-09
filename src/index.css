@@ -1,8 +1,7 @@
-/* ==========================================================================
-   index.css — Stats Central design system
+/*   index.css — Stats Central design system
    Sportsbook-dark theme, mobile-first.
    All other CSS files reference these variables. Never hardcode colors.
-   ========================================================================== */
+  */
 
 :root {
   /* ---- Color: Background layers (darkest → lightest) ---- */
@@ -104,9 +103,7 @@
   background-color: var(--color-bg);
 }
 
-/* ==========================================================================
-   Base reset
-   ========================================================================== */
+/*   Base reset */
 
 *, *::before, *::after {
   margin: 0;
@@ -124,8 +121,9 @@ html, body {
 }
 
 body {
-  /* Padding for iPhone notch / dynamic island / home indicator */
-  padding-top: var(--safe-area-top);
+  /* Safe-area handling lives on the .top-bar (top) and .bottom-nav (bottom)
+     so the frosted-glass bars extend properly behind the iPhone notch
+     and home indicator. */
 }
 
 #root {
@@ -134,9 +132,8 @@ body {
   flex-direction: column;
 }
 
-/* ==========================================================================
-   Typography defaults
-   ========================================================================== */
+/*   Typography defaults
+  */
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
@@ -164,9 +161,8 @@ a {
 
 a:hover { color: var(--color-accent-hover); }
 
-/* ==========================================================================
-   Form controls
-   ========================================================================== */
+/*   Form controls
+  */
 
 button {
   font-family: inherit;
@@ -210,9 +206,8 @@ input:focus, select:focus, textarea:focus {
 
 input::placeholder { color: var(--color-text-muted); }
 
-/* ==========================================================================
-   Scrollbar styling (subtle on dark)
-   ========================================================================== */
+/*   Scrollbar styling (subtle on dark)
+  */
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -222,9 +217,8 @@ input::placeholder { color: var(--color-text-muted); }
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-border-strong); }
 
-/* ==========================================================================
-   Utility classes
-   ========================================================================== */
+/*   Utility classes
+  */
 
 .tabular-nums { font-variant-numeric: tabular-nums; }
 .text-positive { color: var(--color-positive); }
