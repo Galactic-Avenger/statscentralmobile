@@ -2,6 +2,15 @@
 //
 // Local-data API service. Replaces all network calls to balldontlie.io
 // with reads from JSON files in src/data/.
+//
+// Why? The paid endpoints (standings, stats, leaders, injuries, betting odds)
+// returned 401 Unauthorized, and the free endpoints rate-limited (429) on
+// rapid search input. By serving everything from local files we get:
+//   - no API key required
+//   - no internet required
+//   - no rate limits
+//   - guaranteed data for the demo
+//
 // Component code calls the same function names. Each returns a Promise so
 // existing async/await and .then() patterns keep working unchanged.
 
@@ -97,16 +106,9 @@ export const getNbaLeaders = () => {
 };
 
 export const getNbaBettingOdds = () => {
-  const games = nbaGamesData.data
-    .filter(g => g.status === 'Scheduled')
-    .map(g => ({
-      id: g.id,
-      home_team: g.home_team,
-      visitor_team: g.visitor_team,
-      date: g.date,
-      time: g.time,
-      ...g.betting
-    }));
+  // Return scheduled games as-is — each already has a nested `betting` object
+  // matching the shape BettingOdds.jsx expects (game.betting.home_odds, etc.)
+  const games = nbaGamesData.data.filter(g => g.status === 'Scheduled');
   return fakeDelay({ data: games });
 };
 

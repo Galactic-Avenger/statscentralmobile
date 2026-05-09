@@ -57,7 +57,12 @@ const BettingOdds = ({ bettingOdds, loading, fetchBettingOdds }) => {
               </tr>
             </thead>
             <tbody>
-              {bettingOdds.map(game => (
+              {bettingOdds
+                // Skip any game that has no betting block to prevent crashes
+                .filter(game => game && game.betting)
+                .map(game => {
+                  const b = game.betting;
+                  return (
                 <tr key={`odds-${game.id}`}>
                   <td className="game-matchup">
                     <div className="matchup-date">{new Date(game.date).toLocaleDateString()}</div>
@@ -74,52 +79,53 @@ const BettingOdds = ({ bettingOdds, loading, fetchBettingOdds }) => {
                   </td>
                   <td className="moneyline-odds">
                     <div className="odds-row">
-                      <span className={game.betting.home_odds > 0 ? "positive-odds" : "negative-odds"}>
-                        {formatOdds(game.betting.home_odds)}
+                      <span className={b.home_odds > 0 ? "positive-odds" : "negative-odds"}>
+                        {formatOdds(b.home_odds)}
                       </span>
                     </div>
                     <div className="odds-row">
-                      <span className={game.betting.visitor_odds > 0 ? "positive-odds" : "negative-odds"}>
-                        {formatOdds(game.betting.visitor_odds)}
+                      <span className={b.visitor_odds > 0 ? "positive-odds" : "negative-odds"}>
+                        {formatOdds(b.visitor_odds)}
                       </span>
                     </div>
                   </td>
                   <td className="spread-odds">
                     <div className="odds-row">
                       <span className="spread-value">
-                        {game.betting.spread > 0 ? `+${game.betting.spread}` : game.betting.spread}
+                        {b.spread > 0 ? `+${b.spread}` : b.spread}
                       </span>
-                      <span className={game.betting.home_spread_odds > 0 ? "positive-odds" : "negative-odds"}>
-                        ({formatOdds(game.betting.home_spread_odds)})
+                      <span className={b.home_spread_odds > 0 ? "positive-odds" : "negative-odds"}>
+                        ({formatOdds(b.home_spread_odds)})
                       </span>
                     </div>
                     <div className="odds-row">
                       <span className="spread-value">
-                        {game.betting.spread > 0 ? `-${game.betting.spread}` : `+${Math.abs(game.betting.spread)}`}
+                        {b.spread > 0 ? `-${b.spread}` : `+${Math.abs(b.spread)}`}
                       </span>
-                      <span className={game.betting.visitor_spread_odds > 0 ? "positive-odds" : "negative-odds"}>
-                        ({formatOdds(game.betting.visitor_spread_odds)})
+                      <span className={b.visitor_spread_odds > 0 ? "positive-odds" : "negative-odds"}>
+                        ({formatOdds(b.visitor_spread_odds)})
                       </span>
                     </div>
                   </td>
                   <td className="total-odds">
                     <div className="odds-row">
-                      <span className="total-label">O {game.betting.over_under}</span>
+                      <span className="total-label">O {b.over_under}</span>
                       <span className="odds-value">(-110)</span>
                     </div>
                     <div className="odds-row">
-                      <span className="total-label">U {game.betting.over_under}</span>
+                      <span className="total-label">U {b.over_under}</span>
                       <span className="odds-value">(-110)</span>
                     </div>
                   </td>
                   <td className="odds-update">
-                    {game.betting.updated_at ? 
-                      new Date(game.betting.updated_at).toLocaleString() : 
+                    {b.updated_at ?
+                      new Date(b.updated_at).toLocaleString() :
                       'N/A'
                     }
                   </td>
                 </tr>
-              ))}
+                  );
+                })}
             </tbody>
           </table>
           <div className="odds-footer">
