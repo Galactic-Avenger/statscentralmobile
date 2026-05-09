@@ -1,6 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './NFLPage.css'
-import GameDetails from '../components/GameDetails'
+import GameDetails from '../components/NFLGameDetails'
+import {
+  getNflTeams,
+  getNflStandings,
+  getNflGames,
+  getNflTeamRoster,
+  searchNflPlayers,
+  getNflPlayer,
+  getNflPlayerStats,
+  getNflInjuries,
+  getNflLeaders,
+  getNflGameBoxScore
+} from '../services/api'
 
 function NFLPage() {
   const [players, setPlayers] = useState([])
@@ -14,8 +26,7 @@ function NFLPage() {
   const [playerStats, setPlayerStats] = useState(null)
   const [selectedTeam, setSelectedTeam] = useState(null)
   const [teamRoster, setTeamRoster] = useState([])
-  
-  // Season selector state
+
   const currentYear = new Date().getFullYear()
   const [selectedStandingsSeason, setSelectedStandingsSeason] = useState(currentYear)
   const [selectedLeadersSeason, setSelectedLeadersSeason] = useState(currentYear)
@@ -23,96 +34,53 @@ function NFLPage() {
   const [selectedGame, setSelectedGame] = useState(null)
   const [boxScore, setBoxScore] = useState([])
 
-  // Object to store data for different seasons
   const [standingsData, setStandingsData] = useState({})
   const [leadersData, setLeadersData] = useState({})
   const [gamesData, setGamesData] = useState({})
-  
-  // Available seasons for selection (last 5 years)
+
   const availableSeasons = Array.from({length: 5}, (_, i) => currentYear - i)
-  
-  // Premium endpoint state
+
   const [standings, setStandings] = useState([])
   const [games, setGames] = useState([])
   const [injuries, setInjuries] = useState([])
   const [leaders, setLeaders] = useState([])
 
-  // API Configuration
-  const baseUrl = 'https://api.balldontlie.io/nfl/v1'
-  const apiKey = 'eec8a44a-cba9-4226-8711-462860cdad89'
-  
-  const headers = {
-    'Authorization': apiKey
-  }
+  // Debounce timer ref for search input
+  const searchDebounceRef = useRef(null)
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
       setError(null)
       try {
-        // Fetch teams
-        const teamsResponse = await fetch(`${baseUrl}/teams`, {
-          headers
-        })
-        
-        if (!teamsResponse.ok) {
-          throw new Error(`API request failed with status ${teamsResponse.status}`)
-        }
-        
-        const teamsData = await teamsResponse.json()
+        const teamsData = await getNflTeams()
         setTeams(teamsData.data || [])
-        
-        // Don't load any players initially - they'll be loaded on search
         setPlayers([])
-      } catch (error) {
-        console.error("Error fetching initial data:", error);
-        setError(error.message || 'Failed to load data. Please try again later.')
+      } catch (err) {
+        console.error("Error fetching initial data:", err)
+        setError(err.message || 'Failed to load data. Please try again later.')
       } finally {
         setLoading(false)
       }
     }
-
     fetchData()
   }, [])
 
-  // Fetch team standings for a specific season
   function fetchStandings(season = currentYear) {
     setLoadingDetails(true)
-    
-    // Check if we already have data for this season
     if (standingsData[season]) {
       setStandings(standingsData[season])
       setLoadingDetails(false)
       return
     }
-    
-    fetch(`${baseUrl}/standings?season=${season}`, {
-      headers
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
-      }
-      return response.json()
-    })
-    .then(data => {
-      const seasonData = data.data || []
-      
-      // Store the data for this season
-      setStandingsData(prev => ({
-        ...prev,
-        [season]: seasonData
-      }))
-      
-      setStandings(seasonData)
-    })
-    .catch(error => {
-      console.error(`Error fetching standings for season ${season}:`, error)
-      alert(`Failed to load standings for ${season} season. Please try again.`)
-    })
-    .finally(() => {
-      setLoadingDetails(false)
-    })
+    getNflStandings(season)
+      .then(data => {
+        const seasonData = data.data || []
+        setStandingsData(prev => ({ ...prev, [season]: seasonData }))
+        setStandings(seasonData)
+      })
+      .catch(err => console.error(`Failed to load standings for ${season}:`, err))
+      .finally(() => setLoadingDetails(false))
   }
 
   // Handle standings season change
@@ -122,85 +90,21 @@ function NFLPage() {
     fetchStandings(newSeason)
   }
 
-  // Fetch statistical leaders for a specific season
   function fetchLeaders(season = currentYear) {
     setLoadingDetails(true)
-    
-    // Check if we already have data for this season
     if (leadersData[season]) {
       setLeaders(leadersData[season])
       setLoadingDetails(false)
       return
     }
-    
-    // We'll fetch season stats and sort them to get the leaders
-    fetch(`${baseUrl}/season_stats?season=${season}`, {
-      headers
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
-      }
-      return response.json()
-    })
-    .then(data => {
-      // Process and extract top players in various categories
-      const statsList = data.data || [];
-      
-      // Sort by passing yards
-      const passingLeaders = statsList
-        .filter(player => player.passing_yards && player.passing_yards > 0)
-        .sort((a, b) => b.passing_yards - a.passing_yards)
-        .slice(0, 10)
-        .map(player => ({
-          player: player.player,
-          category: 'Passing Yards',
-          value: player.passing_yards,
-          season: season
-        }));
-      
-      // Sort by rushing yards
-      const rushingLeaders = statsList
-        .filter(player => player.rushing_yards && player.rushing_yards > 0)
-        .sort((a, b) => b.rushing_yards - a.rushing_yards)
-        .slice(0, 10)
-        .map(player => ({
-          player: player.player,
-          category: 'Rushing Yards',
-          value: player.rushing_yards,
-          season: season
-        }));
-      
-      // Sort by receiving yards
-      const receivingLeaders = statsList
-        .filter(player => player.receiving_yards && player.receiving_yards > 0)
-        .sort((a, b) => b.receiving_yards - a.receiving_yards)
-        .slice(0, 10)
-        .map(player => ({
-          player: player.player,
-          category: 'Receiving Yards',
-          value: player.receiving_yards,
-          season: season
-        }));
-      
-      // Combine all leaders
-      const seasonLeaders = [...passingLeaders, ...rushingLeaders, ...receivingLeaders];
-      
-      // Store the data for this season
-      setLeadersData(prev => ({
-        ...prev,
-        [season]: seasonLeaders
-      }))
-      
-      setLeaders(seasonLeaders)
-    })
-    .catch(error => {
-      console.error(`Error fetching leaders for season ${season}:`, error);
-      alert(`Failed to load statistical leaders for ${season} season. Please try again.`)
-    })
-    .finally(() => {
-      setLoadingDetails(false)
-    })
+    getNflLeaders(season)
+      .then(data => {
+        const seasonLeaders = (data.data || []).map(l => ({ ...l, season }))
+        setLeadersData(prev => ({ ...prev, [season]: seasonLeaders }))
+        setLeaders(seasonLeaders)
+      })
+      .catch(err => console.error(`Failed to load leaders for ${season}:`, err))
+      .finally(() => setLoadingDetails(false))
   }
 
   // Handle leaders season change
@@ -210,69 +114,29 @@ function NFLPage() {
     fetchLeaders(newSeason)
   }
 
-  // Fetch player injuries
   function fetchInjuries() {
     setLoadingDetails(true)
-    
-    fetch(`${baseUrl}/player_injuries`, {
-      headers
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
-      }
-      return response.json()
-    })
-    .then(data => {
-      setInjuries(data.data || [])
-    })
-    .catch(error => {
-      console.error("Error fetching injuries:", error);
-      alert('Failed to load player injuries. Please try again.')
-    })
-    .finally(() => {
-      setLoadingDetails(false)
-    })
+    getNflInjuries()
+      .then(data => setInjuries(data.data || []))
+      .catch(err => console.error('Failed to load injuries:', err))
+      .finally(() => setLoadingDetails(false))
   }
 
-  // Fetch games for a specific season
   function fetchGames(season = currentYear) {
     setLoadingDetails(true)
-    
-    // Check if we already have data for this season
     if (gamesData[season]) {
       setGames(gamesData[season])
       setLoadingDetails(false)
       return
     }
-    
-    fetch(`${baseUrl}/games?seasons[]=${season}`, {
-      headers
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
-      }
-      return response.json()
-    })
-    .then(data => {
-      const seasonGames = data.data || [];
-      
-      // Store the data for this season
-      setGamesData(prev => ({
-        ...prev,
-        [season]: seasonGames
-      }))
-      
-      setGames(seasonGames)
-    })
-    .catch(error => {
-      console.error(`Error fetching games for season ${season}:`, error);
-      alert(`Failed to load games for ${season} season. Please try again.`)
-    })
-    .finally(() => {
-      setLoadingDetails(false)
-    })
+    getNflGames(season)
+      .then(data => {
+        const seasonGames = data.data || []
+        setGamesData(prev => ({ ...prev, [season]: seasonGames }))
+        setGames(seasonGames)
+      })
+      .catch(err => console.error(`Failed to load games for ${season}:`, err))
+      .finally(() => setLoadingDetails(false))
   }
 
   // Handle games season change
@@ -284,136 +148,68 @@ function NFLPage() {
 
   function fetchTeamRoster(teamId) {
     setLoadingDetails(true)
-    fetch(`${baseUrl}/players?team_ids[]=${teamId}&per_page=100`, {
-      headers
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
-      }
-      return response.json()
-    })
-    .then(data => {
-      console.log(`Retrieved ${data.data?.length || 0} players for team ID ${teamId}`);
-      
-      // Set as both teamRoster and general players so they can be accessed in both contexts
-      setTeamRoster(data.data || [])
-      setPlayers(data.data || [])
-      
-      setSelectedTeam(teams.find(team => team.id === teamId))
-      setActiveTab('players')
-    })
-    .catch(error => {
-      console.error("Error fetching team roster:", error);
-      alert('Failed to load team roster. Please try again.')
-    })
-    .finally(() => {
-      setLoadingDetails(false)
-    })
+    getNflTeamRoster(teamId)
+      .then(data => {
+        setTeamRoster(data.data || [])
+        setPlayers(data.data || [])
+        setSelectedTeam(teams.find(team => team.id === teamId))
+        setActiveTab('players')
+      })
+      .catch(err => console.error('Failed to load team roster:', err))
+      .finally(() => setLoadingDetails(false))
   }
 
   function fetchPlayerStats(playerId) {
     setLoadingDetails(true)
-    const currentYear = new Date().getFullYear();
-    
-    // First, get the player details
-    fetch(`${baseUrl}/players/${playerId}`, {
-      headers
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
-      }
-      return response.json()
-    })
-    .then(playerData => {
-      setSelectedPlayer(playerData.data)
-      
-      // Then get their season stats
-      return fetch(`${baseUrl}/season_stats?player_ids[]=${playerId}&season=${currentYear}`, {
-        headers
+    // Fetch player and stats in parallel; stats include season info
+    Promise.all([
+      getNflPlayer(playerId),
+      getNflPlayerStats(playerId, currentYear)
+    ])
+      .then(([playerRes, statsRes]) => {
+        if (playerRes.data) {
+          setSelectedPlayer(playerRes.data)
+        } else {
+          setSelectedPlayer({ id: playerId, first_name: '', last_name: '', position_abbreviation: '' })
+        }
+        if (statsRes.data && statsRes.data.length > 0) {
+          setPlayerStats(statsRes.data[0])
+        }
       })
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
-      }
-      return response.json()
-    })
-    .then(statsData => {
-      if (statsData.data && statsData.data.length > 0) {
-        setPlayerStats(statsData.data[0])
-      } else {
-        // If no current season stats, try the previous season
-        return fetch(`${baseUrl}/season_stats?player_ids[]=${playerId}&season=${currentYear - 1}`, {
-          headers
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`API request failed with status ${response.status}`)
-          }
-          return response.json()
-        })
-        .then(prevStatsData => {
-          if (prevStatsData.data && prevStatsData.data.length > 0) {
-            setPlayerStats(prevStatsData.data[0])
-          } else {
-            throw new Error("No statistics available for this player")
-          }
-        })
-      }
-    })
-    .catch(error => {
-      console.error("Error fetching player stats:", error);
-      alert('Failed to load player statistics. The player might not have recent stats available.')
-    })
-    .finally(() => {
-      setLoadingDetails(false)
-    })
+      .catch(err => console.error('Failed to load player stats:', err))
+      .finally(() => setLoadingDetails(false))
   }
 
   function handleSearchChange(e) {
-    const value = e.target.value;
+    const value = e.target.value
     setSearchTerm(value)
-    
-    // Clear player selection when search changes
+
     setSelectedPlayer(null)
     setPlayerStats(null)
     setSelectedTeam(null)
     setTeamRoster([])
-    
-    // Only fetch players if search term is at least 3 characters
+
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current)
+    }
+
     if (value.length >= 3) {
-      searchPlayers(value);
+      // Debounce: wait 300ms after the user stops typing.
+      // This was the cause of the 429 (Too Many Requests) errors.
+      searchDebounceRef.current = setTimeout(() => {
+        searchPlayers(value)
+      }, 300)
     } else if (value.length === 0) {
-      // Clear players list if search field is emptied
-      setPlayers([]);
+      setPlayers([])
     }
   }
-  
+
   function searchPlayers(query) {
-    setLoadingDetails(true);
-    
-    fetch(`${baseUrl}/players?search=${encodeURIComponent(query)}&per_page=100`, {
-      headers
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(`Search for "${query}" returned ${data.data?.length || 0} players`);
-      setPlayers(data.data || []);
-    })
-    .catch(error => {
-      console.error("Error searching players:", error);
-      // Don't show an alert for search errors to avoid annoying the user
-    })
-    .finally(() => {
-      setLoadingDetails(false);
-    });
+    setLoadingDetails(true)
+    searchNflPlayers(query)
+      .then(data => setPlayers(data.data || []))
+      .catch(err => console.error('Error searching players:', err))
+      .finally(() => setLoadingDetails(false))
   }
 
   // Filter players based on search term

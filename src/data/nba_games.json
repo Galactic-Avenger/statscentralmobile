@@ -1,0 +1,124 @@
+{
+  "data": [
+    {
+      "id": 1001,
+      "date": "2026-05-04T00:00:00.000Z",
+      "status": "Final",
+      "time": "Final",
+      "home_team": { "id": 14, "full_name": "Los Angeles Lakers", "abbreviation": "LAL" },
+      "visitor_team": { "id": 2, "full_name": "Boston Celtics", "abbreviation": "BOS" },
+      "home_team_score": 118,
+      "visitor_team_score": 122,
+      "period": 4,
+      "betting": { "home_odds": 145, "visitor_odds": -165, "over_under": 224, "spread": 3.5, "home_spread_odds": -110, "visitor_spread_odds": -110, "updated_at": "2026-05-04T22:30:00.000Z" }
+    },
+    {
+      "id": 1002,
+      "date": "2026-05-05T00:00:00.000Z",
+      "status": "Final",
+      "time": "Final",
+      "home_team": { "id": 10, "full_name": "Golden State Warriors", "abbreviation": "GSW" },
+      "visitor_team": { "id": 24, "full_name": "Phoenix Suns", "abbreviation": "PHX" },
+      "home_team_score": 134,
+      "visitor_team_score": 127,
+      "period": 4,
+      "betting": { "home_odds": -135, "visitor_odds": 115, "over_under": 232, "spread": -2.5, "home_spread_odds": -110, "visitor_spread_odds": -110, "updated_at": "2026-05-05T23:15:00.000Z" }
+    },
+    {
+      "id": 1003,
+      "date": "2026-05-06T00:00:00.000Z",
+      "status": "Final",
+      "time": "Final",
+      "home_team": { "id": 17, "full_name": "Milwaukee Bucks", "abbreviation": "MIL" },
+      "visitor_team": { "id": 12, "full_name": "Indiana Pacers", "abbreviation": "IND" },
+      "home_team_score": 109,
+      "visitor_team_score": 114,
+      "period": 4,
+      "betting": { "home_odds": -120, "visitor_odds": 105, "over_under": 228, "spread": -1.5, "home_spread_odds": -110, "visitor_spread_odds": -110, "updated_at": "2026-05-06T22:00:00.000Z" }
+    },
+    {
+      "id": 1004,
+      "date": "2026-05-07T00:00:00.000Z",
+      "status": "Final",
+      "time": "Final",
+      "home_team": { "id": 8, "full_name": "Denver Nuggets", "abbreviation": "DEN" },
+      "visitor_team": { "id": 21, "full_name": "Oklahoma City Thunder", "abbreviation": "OKC" },
+      "home_team_score": 116,
+      "visitor_team_score": 121,
+      "period": 4,
+      "betting": { "home_odds": 100, "visitor_odds": -120, "over_under": 218, "spread": 0.5, "home_spread_odds": -110, "visitor_spread_odds": -110, "updated_at": "2026-05-07T23:45:00.000Z" }
+    },
+    {
+      "id": 1005,
+      "date": "2026-05-07T00:00:00.000Z",
+      "status": "Final",
+      "time": "Final",
+      "home_team": { "id": 20, "full_name": "New York Knicks", "abbreviation": "NYK" },
+      "visitor_team": { "id": 16, "full_name": "Miami Heat", "abbreviation": "MIA" },
+      "home_team_score": 105,
+      "visitor_team_score": 98,
+      "period": 4,
+      "betting": { "home_odds": -150, "visitor_odds": 130, "over_under": 215, "spread": -3.5, "home_spread_odds": -110, "visitor_spread_odds": -110, "updated_at": "2026-05-07T22:30:00.000Z" }
+    },
+    {
+      "id": 1006,
+      "date": "2026-05-09T00:00:00.000Z",
+      "status": "Scheduled",
+      "time": "7:30 PM ET",
+      "home_team": { "id": 7, "full_name": "Dallas Mavericks", "abbreviation": "DAL" },
+      "visitor_team": { "id": 18, "full_name": "Minnesota Timberwolves", "abbreviation": "MIN" },
+      "home_team_score": 0,
+      "visitor_team_score": 0,
+      "period": 0,
+      "betting": { "home_odds": 110, "visitor_odds": -130, "over_under": 226, "spread": 2.5, "home_spread_odds": -110, "visitor_spread_odds": -110, "updated_at": "2026-05-08T18:00:00.000Z" }
+    },
+    {
+      "id": 1007,
+      "date": "2026-05-09T00:00:00.000Z",
+      "status": "Scheduled",
+      "time": "8:00 PM ET",
+      "home_team": { "id": 23, "full_name": "Philadelphia 76ers", "abbreviation": "PHI" },
+      "visitor_team": { "id": 6, "full_name": "Cleveland Cavaliers", "abbreviation": "CLE" },
+      "home_team_score": 0,
+      "visitor_team_score": 0,
+      "period": 0,
+      "betting": { "home_odds": -115, "visitor_odds": 100, "over_under": 220, "spread": -1.5, "home_spread_odds": -110, "visitor_spread_odds": -110, "updated_at": "2026-05-08T18:00:00.000Z" }
+    },
+    {
+      "id": 1008,
+      "date": "2026-05-10T00:00:00.000Z",
+      "status": "Scheduled",
+      "time": "10:00 PM ET",
+      "home_team": { "id": 13, "full_name": "LA Clippers", "abbreviation": "LAC" },
+      "visitor_team": { "id": 26, "full_name": "Sacramento Kings", "abbreviation": "SAC" },
+      "home_team_score": 0,
+      "visitor_team_score": 0,
+      "period": 0,
+      "betting": { "home_odds": -140, "visitor_odds": 120, "over_under": 234, "spread": -3.0, "home_spread_odds": -110, "visitor_spread_odds": -110, "updated_at": "2026-05-08T18:00:00.000Z" }
+    },
+    {
+      "id": 1009,
+      "date": "2026-05-10T00:00:00.000Z",
+      "status": "Scheduled",
+      "time": "8:30 PM ET",
+      "home_team": { "id": 19, "full_name": "New Orleans Pelicans", "abbreviation": "NOP" },
+      "visitor_team": { "id": 15, "full_name": "Memphis Grizzlies", "abbreviation": "MEM" },
+      "home_team_score": 0,
+      "visitor_team_score": 0,
+      "period": 0,
+      "betting": { "home_odds": -180, "visitor_odds": 160, "over_under": 222, "spread": -4.5, "home_spread_odds": -110, "visitor_spread_odds": -110, "updated_at": "2026-05-08T18:00:00.000Z" }
+    },
+    {
+      "id": 1010,
+      "date": "2026-05-11T00:00:00.000Z",
+      "status": "Scheduled",
+      "time": "7:00 PM ET",
+      "home_team": { "id": 1, "full_name": "Atlanta Hawks", "abbreviation": "ATL" },
+      "visitor_team": { "id": 4, "full_name": "Charlotte Hornets", "abbreviation": "CHA" },
+      "home_team_score": 0,
+      "visitor_team_score": 0,
+      "period": 0,
+      "betting": { "home_odds": -200, "visitor_odds": 175, "over_under": 230, "spread": -5.5, "home_spread_odds": -110, "visitor_spread_odds": -110, "updated_at": "2026-05-08T18:00:00.000Z" }
+    }
+  ]
+}

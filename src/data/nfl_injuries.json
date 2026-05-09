@@ -1,0 +1,16 @@
+{
+  "data": [
+    { "id": 1, "player": { "id": 115, "first_name": "Christian", "last_name": "McCaffrey", "position": "RB", "team": { "full_name": "San Francisco 49ers" } }, "status": "Out", "comment": "Achilles - Long-term IR", "date": "2026-05-01T00:00:00.000Z" },
+    { "id": 2, "player": { "id": 125, "first_name": "Stefon", "last_name": "Diggs", "position": "WR", "team": { "full_name": "Houston Texans" } }, "status": "Questionable", "comment": "Knee - Limited in practice", "date": "2026-05-04T00:00:00.000Z" },
+    { "id": 3, "player": { "id": 200, "first_name": "Aaron", "last_name": "Rodgers", "position": "QB", "team": { "full_name": "New York Jets" } }, "status": "Day-to-Day", "comment": "Hamstring tightness", "date": "2026-05-05T00:00:00.000Z" },
+    { "id": 4, "player": { "id": 110, "first_name": "Tua", "last_name": "Tagovailoa", "position": "QB", "team": { "full_name": "Miami Dolphins" } }, "status": "Out", "comment": "Concussion protocol", "date": "2026-05-03T00:00:00.000Z" },
+    { "id": 5, "player": { "id": 105, "first_name": "Joe", "last_name": "Burrow", "position": "QB", "team": { "full_name": "Cincinnati Bengals" } }, "status": "Questionable", "comment": "Wrist soreness", "date": "2026-05-06T00:00:00.000Z" },
+    { "id": 6, "player": { "id": 201, "first_name": "Cooper", "last_name": "Kupp", "position": "WR", "team": { "full_name": "Los Angeles Rams" } }, "status": "Day-to-Day", "comment": "Ankle sprain", "date": "2026-05-04T00:00:00.000Z" },
+    { "id": 7, "player": { "id": 134, "first_name": "Nick", "last_name": "Bosa", "position": "DE", "team": { "full_name": "San Francisco 49ers" } }, "status": "Questionable", "comment": "Hip - Limited", "date": "2026-05-05T00:00:00.000Z" },
+    { "id": 8, "player": { "id": 126, "first_name": "Davante", "last_name": "Adams", "position": "WR", "team": { "full_name": "New York Jets" } }, "status": "Day-to-Day", "comment": "Hamstring strain", "date": "2026-05-06T00:00:00.000Z" },
+    { "id": 9, "player": { "id": 202, "first_name": "Trent", "last_name": "Williams", "position": "OT", "team": { "full_name": "San Francisco 49ers" } }, "status": "Out", "comment": "Ankle - IR", "date": "2026-05-02T00:00:00.000Z" },
+    { "id": 10, "player": { "id": 203, "first_name": "Brandon", "last_name": "Aiyuk", "position": "WR", "team": { "full_name": "San Francisco 49ers" } }, "status": "Out", "comment": "Knee - ACL recovery", "date": "2026-04-28T00:00:00.000Z" },
+    { "id": 11, "player": { "id": 204, "first_name": "Nico", "last_name": "Collins", "position": "WR", "team": { "full_name": "Houston Texans" } }, "status": "Questionable", "comment": "Hamstring", "date": "2026-05-07T00:00:00.000Z" },
+    { "id": 12, "player": { "id": 205, "first_name": "Deshaun", "last_name": "Watson", "position": "QB", "team": { "full_name": "Cleveland Browns" } }, "status": "Out", "comment": "Achilles - Season-ending", "date": "2026-04-15T00:00:00.000Z" }
+  ]
+}

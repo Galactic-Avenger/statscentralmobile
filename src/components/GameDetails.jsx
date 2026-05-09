@@ -1,39 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import './GameDetails.css';
+import { getNbaGameBoxScore } from '../services/api';
 
-const GameDetails = ({ game, onClose, apiKey }) => {
+const GameDetails = ({ game, onClose }) => {
   const [boxScore, setBoxScore] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!game) return;
-    
-    const fetchBoxScore = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(
-          `https://api.balldontlie.io/v1/stats?game_ids[]=${game.id}&per_page=100`, 
-          { headers: { 'Authorization': apiKey } }
-        );
-        
-        if (!response.ok) {
-          throw new Error(`API request failed with status ${response.status}`);
-        }
-        
-        const data = await response.json();
-        setBoxScore(data.data || []);
-      } catch (error) {
-        console.error(`Error fetching box score for game ${game.id}:`, error);
-        setError('Failed to load game statistics. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    fetchBoxScore();
-  }, [game, apiKey]);
+    setLoading(true);
+    setError(null);
+
+    getNbaGameBoxScore(game.id)
+      .then(data => {
+        setBoxScore(data.data || []);
+      })
+      .catch(err => {
+        console.error(`Error fetching box score for game ${game.id}:`, err);
+        setError('Failed to load game statistics.');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [game]);
 
   if (!game) return null;
 

@@ -1,0 +1,21 @@
+{
+  "data": {
+    "265": { "min": "36", "pts": 28, "ast": 8, "reb": 7, "stl": 1, "blk": 1, "turnover": 3, "fgm": 11, "fga": 19, "fg_pct": 0.579, "fg3m": 2, "fg3a": 5, "fg3_pct": 0.400, "ftm": 4, "fta": 5, "ft_pct": 0.800, "oreb": 1, "dreb": 6, "pf": 2 },
+    "105": { "min": "34", "pts": 32, "ast": 6, "reb": 5, "stl": 2, "blk": 0, "turnover": 3, "fgm": 11, "fga": 22, "fg_pct": 0.500, "fg3m": 7, "fg3a": 14, "fg3_pct": 0.500, "ftm": 3, "fta": 3, "ft_pct": 1.000, "oreb": 0, "dreb": 5, "pf": 2 },
+    "140": { "min": "37", "pts": 30, "ast": 5, "reb": 8, "stl": 1, "blk": 2, "turnover": 2, "fgm": 11, "fga": 21, "fg_pct": 0.524, "fg3m": 3, "fg3a": 7, "fg3_pct": 0.429, "ftm": 5, "fta": 6, "ft_pct": 0.833, "oreb": 1, "dreb": 7, "pf": 2 },
+    "145": { "min": "35", "pts": 31, "ast": 6, "reb": 12, "stl": 1, "blk": 1, "turnover": 4, "fgm": 12, "fga": 19, "fg_pct": 0.632, "fg3m": 0, "fg3a": 1, "fg3_pct": 0.000, "ftm": 7, "fta": 11, "ft_pct": 0.636, "oreb": 3, "dreb": 9, "pf": 3 },
+    "115": { "min": "37", "pts": 33, "ast": 9, "reb": 8, "stl": 2, "blk": 0, "turnover": 4, "fgm": 12, "fga": 25, "fg_pct": 0.480, "fg3m": 5, "fg3a": 12, "fg3_pct": 0.417, "ftm": 4, "fta": 5, "ft_pct": 0.800, "oreb": 0, "dreb": 8, "pf": 2 },
+    "237": { "min": "33", "pts": 33, "ast": 4, "reb": 11, "stl": 1, "blk": 2, "turnover": 3, "fgm": 11, "fga": 21, "fg_pct": 0.524, "fg3m": 1, "fg3a": 3, "fg3_pct": 0.333, "ftm": 10, "fta": 11, "ft_pct": 0.909, "oreb": 2, "dreb": 9, "pf": 2 },
+    "246": { "min": "34", "pts": 31, "ast": 6, "reb": 5, "stl": 2, "blk": 1, "turnover": 2, "fgm": 11, "fga": 20, "fg_pct": 0.550, "fg3m": 2, "fg3a": 5, "fg3_pct": 0.400, "ftm": 7, "fta": 8, "ft_pct": 0.875, "oreb": 0, "dreb": 5, "pf": 2 },
+    "220": { "min": "35", "pts": 26, "ast": 9, "reb": 12, "stl": 1, "blk": 1, "turnover": 3, "fgm": 10, "fga": 17, "fg_pct": 0.588, "fg3m": 0, "fg3a": 2, "fg3_pct": 0.000, "ftm": 6, "fta": 7, "ft_pct": 0.857, "oreb": 2, "dreb": 10, "pf": 2 },
+    "448": { "min": "37", "pts": 30, "ast": 5, "reb": 9, "stl": 1, "blk": 1, "turnover": 3, "fgm": 10, "fga": 22, "fg_pct": 0.455, "fg3m": 4, "fg3a": 9, "fg3_pct": 0.444, "ftm": 6, "fta": 7, "ft_pct": 0.857, "oreb": 1, "dreb": 8, "pf": 2 },
+    "15": { "min": "35", "pts": 28, "ast": 7, "reb": 4, "stl": 1, "blk": 0, "turnover": 3, "fgm": 9, "fga": 21, "fg_pct": 0.429, "fg3m": 4, "fg3a": 11, "fg3_pct": 0.364, "ftm": 6, "fta": 7, "ft_pct": 0.857, "oreb": 0, "dreb": 4, "pf": 2 },
+    "165": { "min": "33", "pts": 21, "ast": 5, "reb": 5, "stl": 2, "blk": 1, "turnover": 2, "fgm": 7, "fga": 14, "fg_pct": 0.500, "fg3m": 1, "fg3a": 3, "fg3_pct": 0.333, "ftm": 6, "fta": 7, "ft_pct": 0.857, "oreb": 1, "dreb": 4, "pf": 2 },
+    "189": { "min": "34", "pts": 27, "ast": 5, "reb": 5, "stl": 2, "blk": 0, "turnover": 3, "fgm": 9, "fga": 19, "fg_pct": 0.474, "fg3m": 4, "fg3a": 9, "fg3_pct": 0.444, "ftm": 5, "fta": 6, "ft_pct": 0.833, "oreb": 0, "dreb": 5, "pf": 2 },
+    "78": { "min": "35", "pts": 27, "ast": 7, "reb": 4, "stl": 1, "blk": 0, "turnover": 3, "fgm": 10, "fga": 21, "fg_pct": 0.476, "fg3m": 2, "fg3a": 6, "fg3_pct": 0.333, "ftm": 5, "fta": 5, "ft_pct": 1.000, "oreb": 0, "dreb": 4, "pf": 2 },
+    "482": { "min": "34", "pts": 26, "ast": 11, "reb": 3, "stl": 1, "blk": 0, "turnover": 4, "fgm": 8, "fga": 19, "fg_pct": 0.421, "fg3m": 3, "fg3a": 9, "fg3_pct": 0.333, "ftm": 7, "fta": 8, "ft_pct": 0.875, "oreb": 0, "dreb": 3, "pf": 2 },
+    "132": { "min": "35", "pts": 26, "ast": 5, "reb": 6, "stl": 1, "blk": 1, "turnover": 3, "fgm": 9, "fga": 21, "fg_pct": 0.429, "fg3m": 3, "fg3a": 9, "fg3_pct": 0.333, "ftm": 5, "fta": 6, "ft_pct": 0.833, "oreb": 1, "dreb": 5, "pf": 2 },
+    "478": { "min": "32", "pts": 23, "ast": 4, "reb": 7, "stl": 1, "blk": 1, "turnover": 3, "fgm": 9, "fga": 16, "fg_pct": 0.563, "fg3m": 0, "fg3a": 1, "fg3_pct": 0.000, "ftm": 5, "fta": 7, "ft_pct": 0.714, "oreb": 2, "dreb": 5, "pf": 2 },
+    "481": { "min": "33", "pts": 21, "ast": 4, "reb": 11, "stl": 1, "blk": 4, "turnover": 3, "fgm": 8, "fga": 17, "fg_pct": 0.471, "fg3m": 2, "fg3a": 6, "fg3_pct": 0.333, "ftm": 3, "fta": 4, "ft_pct": 0.750, "oreb": 2, "dreb": 9, "pf": 3 }
+  }
+}
