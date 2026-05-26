@@ -183,7 +183,7 @@ Potential providers:
 
 ---
 
-## 📌 Project Status
+## 📌 Note
 
 This project was developed as an academic product and business case study. The current build demonstrates the MVP experience using mock data and conceptual workflows.
 
